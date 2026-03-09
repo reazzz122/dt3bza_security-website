@@ -123,7 +123,7 @@ export default function SecurityServicesWebsite() {
           <a href="#pricing">Pricing</a>
           <a href="#contact">Contact</a>
           <a
-            href="https://wa.me/27684861332"
+            href="https://wa.me/27646993670"
             target="_blank"
             rel="noreferrer"
             className="nav-cta"
@@ -152,7 +152,7 @@ export default function SecurityServicesWebsite() {
             <div className="hero-actions">
               <a
                 className="btn btn-primary"
-                href="https://wa.me/27684861332"
+                href="https://wa.me/27646993670"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -399,7 +399,7 @@ export default function SecurityServicesWebsite() {
             <div className="contact-actions">
               <a
                 className="btn btn-primary"
-                href="https://wa.me/27684861332"
+                href="https://wa.me/27646993670"
                 target="_blank"
                 rel="noreferrer"
               >
