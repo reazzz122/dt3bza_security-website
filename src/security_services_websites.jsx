@@ -1,5 +1,5 @@
 export default function SecurityServicesWebsite() {
-  const services = [
+  const coreServices = [
     {
       title: "Cybersecurity Risk Assessments",
       text: "Identify vulnerabilities across business systems, devices, users, and operational workflows before attackers exploit them.",
@@ -18,7 +18,7 @@ export default function SecurityServicesWebsite() {
     },
     {
       title: "CCTV Sales, Installation & Support",
-      text: "Professional surveillance system sales, setup, maintenance, upgrades, and support for both new and existing camera environments.",
+      text: "Professional surveillance system sales, setup, upgrades, maintenance, and support for both new and existing environments.",
     },
     {
       title: "Access Control & Physical Security",
@@ -26,15 +26,24 @@ export default function SecurityServicesWebsite() {
     },
   ];
 
+  const schoolServices = [
+    "School CCTV installation and upgrades",
+    "Classroom, corridor, gate, and perimeter camera coverage",
+    "Access-control support for entrances and restricted areas",
+    "Existing school surveillance system maintenance",
+    "Security reviews for educational facilities",
+    "Monitoring and infrastructure recommendations",
+  ];
+
   const industries = [
     "Law Firms",
     "Accounting Firms",
     "Construction Companies",
-    "Retail",
-    "Warehousing",
+    "Retail Businesses",
+    "Warehousing & Logistics",
     "Corporate Offices",
     "Schools & Educational Institutions",
-    "Hospitality",
+    "Hospitality & Hotels",
     "Residential Estates",
   ];
 
@@ -81,24 +90,17 @@ export default function SecurityServicesWebsite() {
   const physicalServices = [
     "CCTV system sales and consultation",
     "Professional installation and setup",
-    "Support for existing camera systems",
-    "System upgrades and expansions",
     "Maintenance and repairs",
-    "Network setup for surveillance systems",
-  ];
-
-  const process = [
-    "Review visible cyber and operational security risks",
-    "Discuss surveillance or access-control requirements",
-    "Recommend the most suitable protection path",
-    "Implement, upgrade, or support the required systems",
+    "Support for existing surveillance systems",
+    "System upgrades and expansions",
+    "Network configuration for camera systems",
   ];
 
   const trustPoints = [
-    "Structured digital security packages",
-    "Custom CCTV quotes based on customer needs",
-    "Support for existing surveillance systems",
-    "Professional positioning for serious clients",
+    "Premium business-facing security positioning",
+    "Digital and physical protection under one brand",
+    "Support for both new projects and existing systems",
+    "Structured service delivery that builds trust early",
   ];
 
   return (
@@ -108,9 +110,10 @@ export default function SecurityServicesWebsite() {
           <div className="brand-mark">
             <img src="/logo.png" alt="Dt3bza Security logo" />
           </div>
+
           <div className="brand-copy">
             <strong>Dt3bza Security</strong>
-            <span>Cybersecurity, Surveillance & Business Protection</span>
+            <span>Cybersecurity, Surveillance &amp; Business Protection</span>
           </div>
         </a>
 
@@ -120,10 +123,10 @@ export default function SecurityServicesWebsite() {
           <a href="#pricing">Pricing</a>
           <a href="#contact">Contact</a>
           <a
-            className="nav-cta"
             href="https://wa.me/27684861332"
             target="_blank"
             rel="noreferrer"
+            className="nav-cta"
           >
             WhatsApp
           </a>
@@ -136,11 +139,14 @@ export default function SecurityServicesWebsite() {
             <div className="eyebrow">
               Enterprise-level positioning • premium business security
             </div>
+
             <h1>Serious protection for businesses that refuse to look vulnerable.</h1>
+
             <p className="hero-text">
-              Dt3bza Security protects business systems, sensitive data, operational
-              environments, and physical sites through premium cybersecurity,
-              surveillance, and layered business protection.
+              Dt3bza Security helps organizations protect digital systems,
+              sensitive data, operational infrastructure, and physical
+              environments through premium cybersecurity, surveillance, and
+              layered business protection.
             </p>
 
             <div className="hero-actions">
@@ -150,20 +156,22 @@ export default function SecurityServicesWebsite() {
                 target="_blank"
                 rel="noreferrer"
               >
-                Book a Security Consultation
+                Book a Free Security Strategy Call
               </a>
+
               <a className="btn btn-secondary" href="#pricing">
-                View Digital Packages
+                View Security Packages
               </a>
+
               <a className="btn btn-ghost" href="mailto:info@dt3bza-security.com">
-                Book by Email
+                Email Dt3bza Security
               </a>
             </div>
 
-            <div className="mini-proof">
-              <span>Cybersecurity</span>
-              <span>Surveillance</span>
-              <span>Business Protection</span>
+            <div className="hero-tags">
+              <span>24/7 Security mindset</span>
+              <span>AI Enhanced visibility</span>
+              <span>Global remote support</span>
             </div>
           </div>
 
@@ -171,30 +179,31 @@ export default function SecurityServicesWebsite() {
             <div className="panel-label">Security Confidence</div>
             <h3>Built to look credible before the first call.</h3>
             <p>
-              Premium positioning, stronger protection language, and structured
-              service delivery designed to attract serious clients.
+              Premium positioning, real business protection language, and
+              services structured to attract serious clients.
             </p>
 
-            <ul className="bullet-list compact">
-              {trustPoints.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
+            <ul className="signal-list">
+              <li>Protection against ransomware, cyber extortion, and system compromise</li>
+              <li>Backup and recovery strategies that reduce data loss and downtime</li>
+              <li>Security reviews focused on real operational and technical weaknesses</li>
+              <li>Integrated support across cybersecurity, surveillance, and access protection</li>
             </ul>
           </div>
         </section>
 
         <section className="section-tight stats">
           <div className="stat-card">
-            <strong>Digital Security</strong>
-            <span>Structured cybersecurity services with visible entry pricing.</span>
+            <strong>Executive-style positioning</strong>
+            <span>Premium business presentation for stronger trust.</span>
           </div>
           <div className="stat-card">
-            <strong>Physical Security</strong>
-            <span>CCTV sales, installations, maintenance, and support.</span>
+            <strong>Cyber + surveillance offering</strong>
+            <span>One brand covering digital and physical protection.</span>
           </div>
           <div className="stat-card">
-            <strong>Flexible Delivery</strong>
-            <span>Remote digital support and custom on-site project quotes.</span>
+            <strong>Built for higher-trust lead conversion</strong>
+            <span>Clearer offers for more serious clients.</span>
           </div>
         </section>
 
@@ -204,12 +213,12 @@ export default function SecurityServicesWebsite() {
             <h2>Security services designed for serious clients and real environments.</h2>
             <p>
               Dt3bza Security combines digital protection, surveillance support,
-              and operational risk reduction into one stronger business-facing brand.
+              and operational security into one stronger business-facing offer.
             </p>
           </div>
 
           <div className="service-grid">
-            {services.map((service) => (
+            {coreServices.map((service) => (
               <article key={service.title} className="service-card">
                 <h3>{service.title}</h3>
                 <p>{service.text}</p>
@@ -223,8 +232,9 @@ export default function SecurityServicesWebsite() {
             <div className="eyebrow">CCTV & Surveillance</div>
             <h2>Custom physical security packages built around each client’s needs.</h2>
             <p>
-              CCTV work is quoted per project because every property, camera count,
-              infrastructure setup, and installation requirement is different.
+              CCTV and physical security work is quoted per project because
+              every property, infrastructure setup, camera count, and
+              installation requirement is different.
             </p>
 
             <ul className="bullet-list">
@@ -234,24 +244,59 @@ export default function SecurityServicesWebsite() {
             </ul>
 
             <div className="note-box">
-              <strong>Important:</strong> Visible pricing applies to digital security
-              services only. Physical security installations are quoted individually
-              based on customer requirements.
+              <strong>Important:</strong> Visible pricing applies to digital
+              security services only. CCTV and physical security installations
+              are quoted individually based on customer requirements.
             </div>
           </div>
 
           <div className="split-card soft-glow">
-            <div className="eyebrow">Trusted Security Platforms</div>
-            <h2>Supported surveillance systems and brands</h2>
+            <div className="eyebrow">Trusted CCTV Technology</div>
+            <h2>Professional surveillance platforms we support</h2>
             <p>
-              We install, configure, upgrade, and support industry-recognized
-              surveillance platforms trusted by businesses worldwide.
+              We install and support recognized surveillance systems trusted by
+              businesses, schools, offices, and operational facilities.
             </p>
 
-            <div className="brand-logos">
-              <img src="/brands/hikvision.png" alt="Hikvision logo" />
-              <img src="/brands/dahua.png" alt="Dahua logo" />
-              <img src="/brands/provision.png" alt="Provision ISR logo" />
+            <div className="brands-grid">
+              <img src="/brands/hikvision.png" alt="Hikvision CCTV" />
+              <img src="/brands/dahua.png" alt="Dahua CCTV" />
+              <img src="/brands/provision.png" alt="Provision ISR CCTV" />
+            </div>
+          </div>
+        </section>
+
+        <section className="section school-section">
+          <div className="section-head">
+            <div className="eyebrow">School Security</div>
+            <h2>Security support for schools, colleges, and educational institutions.</h2>
+            <p>
+              Educational environments need stronger visibility, safer access
+              control, and better protection for staff, learners, and property.
+              Dt3bza Security supports school security with surveillance,
+              infrastructure guidance, and ongoing system support.
+            </p>
+          </div>
+
+          <div className="school-grid">
+            <div className="split-card">
+              <h3>School Security Services</h3>
+              <ul className="bullet-list">
+                {schoolServices.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="split-card">
+              <h3>Why Schools Need Stronger Protection</h3>
+              <ul className="bullet-list">
+                <li>Improve monitoring of gates, walkways, and key buildings</li>
+                <li>Reduce blind spots across school property</li>
+                <li>Support incident review and operational oversight</li>
+                <li>Strengthen access control for staff and visitors</li>
+                <li>Create safer environments for learners and personnel</li>
+              </ul>
             </div>
           </div>
         </section>
@@ -261,8 +306,8 @@ export default function SecurityServicesWebsite() {
             <div className="eyebrow">Industries We Protect</div>
             <h2>Built for organizations that need stronger protection and clearer structure.</h2>
             <p>
-              We support clients that rely on secure operations, monitored
-              environments, and stable infrastructure.
+              We position Dt3bza Security to appeal to clients who need both
+              strong protection and confidence in the provider they choose.
             </p>
           </div>
 
@@ -277,30 +322,23 @@ export default function SecurityServicesWebsite() {
 
         <section className="section split-section">
           <div className="split-card">
-            <div className="eyebrow">Our Security Approach</div>
-            <h2>Offer a conversation that feels premium, not desperate.</h2>
-            <p>
-              The goal is to move serious prospects toward a short strategy review,
-              position Dt3bza Security as a high-value provider, and recommend the
-              most suitable protection path.
-            </p>
-
+            <div className="eyebrow">Why Businesses Choose Dt3bza</div>
+            <h2>Security positioning that feels premium, stable, and trustworthy.</h2>
             <ul className="bullet-list">
-              {process.map((item) => (
-                <li key={item}>{item}</li>
+              {trustPoints.map((point) => (
+                <li key={point}>{point}</li>
               ))}
             </ul>
           </div>
 
           <div className="split-card">
-            <div className="eyebrow">Executive Value</div>
-            <h2>Why businesses choose Dt3bza Security</h2>
+            <div className="eyebrow">Coverage</div>
+            <h2>Physical security in the Western Cape. Digital security worldwide.</h2>
             <ul className="bullet-list">
-              <li>Stronger positioning for larger or more serious clients</li>
-              <li>One brand covering cybersecurity and physical security support</li>
-              <li>Support for both new systems and existing installations</li>
-              <li>Messaging built to improve trust before the first call</li>
-              <li>A professional image clients can confidently spend money with</li>
+              <li>CCTV installation, upgrades, and maintenance in the Western Cape</li>
+              <li>Support for existing surveillance systems</li>
+              <li>Remote cybersecurity consulting available internationally</li>
+              <li>Business protection support for both local and global clients</li>
             </ul>
           </div>
         </section>
@@ -311,8 +349,8 @@ export default function SecurityServicesWebsite() {
             <h2>Visible pricing for digital work. Custom quotes for physical security.</h2>
             <p>
               These packages apply to cybersecurity, digital protection, and
-              related consulting. CCTV and installation work is quoted separately
-              based on site requirements.
+              related consulting. CCTV and installation work is quoted
+              separately based on site requirements.
             </p>
           </div>
 
@@ -346,39 +384,15 @@ export default function SecurityServicesWebsite() {
           </div>
         </section>
 
-        <section className="section">
-          <div className="section-head">
-            <div className="eyebrow">Service Coverage</div>
-            <h2>Physical security in the Western Cape. Digital security worldwide.</h2>
-          </div>
-
-          <div className="coverage-grid">
-            <div className="coverage-card">
-              <h3>On-site Services</h3>
-              <p>
-                CCTV installation, surveillance upgrades, repairs, and maintenance
-                are currently available in the Western Cape.
-              </p>
-            </div>
-            <div className="coverage-card">
-              <h3>Remote Digital Services</h3>
-              <p>
-                Cybersecurity consulting, digital protection planning, and security
-                reviews can be delivered internationally.
-              </p>
-            </div>
-          </div>
-        </section>
-
         <section id="contact" className="section contact-section">
           <div className="contact-box">
             <div>
               <div className="eyebrow">Free Strategy Review</div>
               <h2>Move serious prospects toward a short security conversation.</h2>
               <p>
-                Review visible cyber and operational security risks, discuss
-                surveillance or access-control requirements, and recommend the most
-                suitable protection path.
+                Review visible cyber and operational risks, discuss
+                surveillance requirements, and recommend the most suitable
+                protection path.
               </p>
             </div>
 
@@ -391,6 +405,7 @@ export default function SecurityServicesWebsite() {
               >
                 Book on WhatsApp
               </a>
+
               <a className="btn btn-secondary" href="mailto:info@dt3bza-security.com">
                 Book by Email
               </a>
