@@ -18,9 +18,7 @@ export default function Cybersecurity() {
             <NavLink to="/cybersecurity">Cybersecurity</NavLink>
             <NavLink to="/cctv">CCTV</NavLink>
             <NavLink to="/schools">School Security</NavLink>
-            <NavLink to="/contact" className="nav-cta">
-              Contact
-            </NavLink>
+            <NavLink to="/contact" className="nav-cta">Contact</NavLink>
           </nav>
         </div>
       </header>
@@ -37,30 +35,12 @@ export default function Cybersecurity() {
           </div>
 
           <div className="cards-grid">
-            <article className="info-card">
-              <h3>Security Risk Assessments</h3>
-              <p>Identify vulnerabilities across users, devices, systems, and workflows.</p>
-            </article>
-            <article className="info-card">
-              <h3>Network Security Hardening</h3>
-              <p>Improve protection across routers, internal systems, permissions, and access points.</p>
-            </article>
-            <article className="info-card">
-              <h3>Endpoint Protection</h3>
-              <p>Strengthen device-level security to reduce avoidable compromise risk.</p>
-            </article>
-            <article className="info-card">
-              <h3>Backup & Recovery Planning</h3>
-              <p>Reduce downtime and data loss with structured resilience planning.</p>
-            </article>
-            <article className="info-card">
-              <h3>Business Security Strategy</h3>
-              <p>Support organizations that need stronger operational protection and clearer security direction.</p>
-            </article>
-            <article className="info-card">
-              <h3>Remote Support</h3>
-              <p>Digital security consulting can be delivered remotely for clients worldwide.</p>
-            </article>
+            <article className="info-card"><h3>Security Risk Assessments</h3><p>Identify vulnerabilities across users, devices, systems, and workflows.</p></article>
+            <article className="info-card"><h3>Network Security Hardening</h3><p>Improve protection across routers, internal systems, permissions, and access points.</p></article>
+            <article className="info-card"><h3>Endpoint Protection</h3><p>Strengthen device-level security to reduce avoidable compromise risk.</p></article>
+            <article className="info-card"><h3>Backup & Recovery Planning</h3><p>Reduce downtime and data loss with structured resilience planning.</p></article>
+            <article className="info-card"><h3>Business Security Strategy</h3><p>Support organizations that need stronger operational protection and clearer security direction.</p></article>
+            <article className="info-card"><h3>Remote Support</h3><p>Digital security consulting can be delivered remotely for clients worldwide.</p></article>
           </div>
         </div>
       </main>
