@@ -29,37 +29,45 @@ export default function SchoolSecurity() {
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">School Security</div>
-            <h1 className="page-title">Safer environments for learners, staff, and school property.</h1>
+            <h1 className="page-title">
+              Safer environments for learners, staff, and school property.
+            </h1>
             <p>
               Dt3bza Security supports educational institutions with stronger
-              visibility, better entrance monitoring, and practical surveillance solutions.
+              visibility, entrance monitoring, perimeter coverage and reliable
+              surveillance systems.
             </p>
           </div>
 
           <div className="cards-grid">
             <article className="info-card">
               <h3>Gate Monitoring</h3>
-              <p>Improve control and visibility at main access points.</p>
+              <p>Improve control and monitoring at main school entrances.</p>
             </article>
+
             <article className="info-card">
               <h3>Perimeter Coverage</h3>
-              <p>Reduce blind spots across school grounds and important boundaries.</p>
+              <p>Reduce blind spots across school grounds and boundaries.</p>
             </article>
+
             <article className="info-card">
-              <h3>Corridor & Building Surveillance</h3>
-              <p>Support safer monitoring in school buildings and movement areas.</p>
+              <h3>Corridor Monitoring</h3>
+              <p>Improve supervision across internal school buildings.</p>
             </article>
+
             <article className="info-card">
-              <h3>Existing System Upgrades</h3>
-              <p>Improve older installations with better coverage and support.</p>
+              <h3>Camera Upgrades</h3>
+              <p>Upgrade outdated surveillance systems to modern solutions.</p>
             </article>
+
             <article className="info-card">
-              <h3>Maintenance Support</h3>
-              <p>Keep surveillance systems operational and reliable.</p>
+              <h3>Maintenance</h3>
+              <p>Ensure camera systems remain operational and reliable.</p>
             </article>
+
             <article className="info-card">
               <h3>Security Reviews</h3>
-              <p>Assess visible risks and recommend suitable improvements.</p>
+              <p>Assess school security and recommend improvements.</p>
             </article>
           </div>
         </div>
