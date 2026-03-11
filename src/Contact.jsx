@@ -29,34 +29,45 @@ export default function Contact() {
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">Contact</div>
-            <h1 className="page-title">Book a security consultation.</h1>
+            <h1 className="page-title">Book a security consultation</h1>
             <p>
-              Use WhatsApp or email to discuss cybersecurity, CCTV, school security,
-              upgrades, maintenance, or a general business security review.
+              Contact Dt3bza Security to discuss cybersecurity, CCTV systems,
+              school security or general business protection solutions.
             </p>
           </div>
 
-          <div className="contact-panel">
-            <div className="info-card">
+          <div className="cards-grid">
+            <article className="info-card">
               <h3>WhatsApp</h3>
-              <p>Fastest way to reach Dt3bza Security.</p>
+              <p>The fastest way to reach us.</p>
+
               <a
                 className="btn btn-primary"
-                href="https://wa.me/27646993670?text=Hello%20I%20am%20interested%20in%20your%20security%20services"
+                href="https://wa.me/27646993670"
                 target="_blank"
                 rel="noreferrer"
               >
                 Message on WhatsApp
               </a>
-            </div>
+            </article>
 
-            <div className="info-card">
+            <article className="info-card">
               <h3>Email</h3>
-              <p>Use email for formal business enquiries and quotes.</p>
-              <a className="btn btn-secondary" href="mailto:info@dt3bza-security.com">
+              <p>Send us a detailed enquiry.</p>
+
+              <a
+                className="btn btn-secondary"
+                href="mailto:info@dt3bza-security.com"
+              >
                 info@dt3bza-security.com
               </a>
-            </div>
+            </article>
+
+            <article className="info-card">
+              <h3>Phone</h3>
+              <p>Call our team directly.</p>
+              <p>064 699 3670</p>
+            </article>
           </div>
         </div>
       </main>
