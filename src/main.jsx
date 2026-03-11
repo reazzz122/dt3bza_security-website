@@ -1,11 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./Home";
-import Cybersecurity from "./Cybersecurity";
-import CCTV from "./CCTV";
-import SchoolSecurity from "./SchoolSecurity";
-import Contact from "./Contact";
+
+import Home from "./Home.jsx";
+import Cybersecurity from "./Cybersecurity.jsx";
+import CCTV from "./CCTV.jsx";
+import SchoolSecurity from "./SchoolSecurity.jsx";
+import Contact from "./Contact.jsx";
+
 import "./styles.css";
 
 function App() {
