@@ -18,9 +18,7 @@ export default function CCTV() {
             <NavLink to="/cybersecurity">Cybersecurity</NavLink>
             <NavLink to="/cctv">CCTV</NavLink>
             <NavLink to="/schools">School Security</NavLink>
-            <NavLink to="/contact" className="nav-cta">
-              Contact
-            </NavLink>
+            <NavLink to="/contact" className="nav-cta">Contact</NavLink>
           </nav>
         </div>
       </header>
@@ -37,30 +35,12 @@ export default function CCTV() {
           </div>
 
           <div className="cards-grid">
-            <article className="info-card">
-              <h3>CCTV Sales & Consultation</h3>
-              <p>Guidance on choosing the right surveillance solution for your environment.</p>
-            </article>
-            <article className="info-card">
-              <h3>Professional Installation</h3>
-              <p>Structured system installation for business, school, and facility environments.</p>
-            </article>
-            <article className="info-card">
-              <h3>Maintenance & Repairs</h3>
-              <p>Keep your existing system reliable and operational.</p>
-            </article>
-            <article className="info-card">
-              <h3>System Upgrades</h3>
-              <p>Expand, modernize, or improve current surveillance coverage.</p>
-            </article>
-            <article className="info-card">
-              <h3>Existing System Support</h3>
-              <p>We support businesses that already have surveillance installed.</p>
-            </article>
-            <article className="info-card">
-              <h3>Western Cape Coverage</h3>
-              <p>Physical installation services are available in the Western Cape.</p>
-            </article>
+            <article className="info-card"><h3>CCTV Sales & Consultation</h3><p>Guidance on choosing the right surveillance solution for your environment.</p></article>
+            <article className="info-card"><h3>Professional Installation</h3><p>Structured system installation for business, school, and facility environments.</p></article>
+            <article className="info-card"><h3>Maintenance & Repairs</h3><p>Keep your existing system reliable and operational.</p></article>
+            <article className="info-card"><h3>System Upgrades</h3><p>Expand, modernize, or improve current surveillance coverage.</p></article>
+            <article className="info-card"><h3>Existing System Support</h3><p>We support businesses that already have surveillance installed.</p></article>
+            <article className="info-card"><h3>Western Cape Coverage</h3><p>Physical installation services are available in the Western Cape.</p></article>
           </div>
         </div>
       </main>
