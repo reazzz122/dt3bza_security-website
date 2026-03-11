@@ -4,9 +4,8 @@ function Header() {
   return (
     <header className="site-header">
       <div className="container header-inner">
-
         <NavLink to="/" className="brand">
-          <img src="/logo.png" className="brand-logo"/>
+          <img src="/logo.png" alt="Dt3bza Security" className="brand-logo" />
           <div className="brand-text">
             <strong>Dt3bza Security</strong>
             <span>Cybersecurity • Surveillance • Business Protection</span>
@@ -18,314 +17,394 @@ function Header() {
           <NavLink to="/cybersecurity">Cybersecurity</NavLink>
           <NavLink to="/cctv">CCTV</NavLink>
           <NavLink to="/schools">Schools</NavLink>
-          <NavLink to="/contact" className="nav-cta">Contact</NavLink>
+          <NavLink to="/contact" className="nav-cta">
+            Contact
+          </NavLink>
         </nav>
-
       </div>
     </header>
   );
 }
 
-function Footer(){
-return(
+function Footer() {
+  return (
+    <footer className="site-footer">
+      <div className="container footer-inner">
+        <div className="footer-brand">
+          <strong>Dt3bza Security</strong>
+          <p>Trading name for tenders and government contracts: <strong>FORTYXIS SECURITY</strong></p>
+        </div>
 
-<footer className="site-footer">
-
-<div className="container footer-inner">
-
-<div>
-<strong>Dt3bza Security</strong>
-<p>Cybersecurity, Surveillance & Business Protection</p>
-</div>
-
-<div className="footer-links">
-<NavLink to="/cybersecurity">Cybersecurity</NavLink>
-<NavLink to="/cctv">CCTV</NavLink>
-<NavLink to="/schools">Schools</NavLink>
-<NavLink to="/contact">Contact</NavLink>
-</div>
-
-</div>
-
-</footer>
-
-)
+        <div className="footer-links">
+          <NavLink to="/cybersecurity">Cybersecurity</NavLink>
+          <NavLink to="/cctv">CCTV</NavLink>
+          <NavLink to="/schools">Schools</NavLink>
+          <NavLink to="/contact">Contact</NavLink>
+        </div>
+      </div>
+    </footer>
+  );
 }
 
-export default function Home(){
-
-return(
-
-<div className="page-shell">
-
-<Header/>
-
-<main>
-
-<section className="hero-section">
-
-<div className="container hero-grid">
-
-<div>
-
-<div className="eyebrow">
-Enterprise Security Solutions
-</div>
-
-<h1 className="hero-title">
-Professional Cybersecurity and Surveillance Protection
-</h1>
-
-<p className="hero-copy">
-Dt3bza Security provides cybersecurity protection, CCTV installation, 
-system maintenance and security consulting for companies, schools 
-and operational environments.
-</p>
-
-<div className="hero-actions">
-
-<a
-className="btn btn-primary"
-href="https://wa.me/27646993670"
-target="_blank"
->
-Request Consultation
-</a>
-
-<NavLink to="/cybersecurity" className="btn btn-secondary">
-Explore Services
-</NavLink>
-
-</div>
-
-<div className="hero-badges">
-<span>Cybersecurity</span>
-<span>CCTV Installation</span>
-<span>Business Protection</span>
-<span>School Security</span>
-</div>
-
-</div>
-
-<div className="hero-card">
-
-<div className="card-label">
-Why Businesses Choose Us
-</div>
-
-<ul>
-
-<li>Cybersecurity risk reviews</li>
-
-<li>CCTV installation and maintenance</li>
-
-<li>Security solutions for schools and offices</li>
-
-<li>Professional security consulting</li>
-
-</ul>
-
-</div>
-
-</div>
-
-</section>
-
-
-<section className="section">
-
-<div className="container">
-
-<div className="section-head">
-
-<div className="eyebrow">
-Surveillance Brands
-</div>
-
-<h2>Professional CCTV systems we support</h2>
-
-<p>
-We work with reliable security brands trusted worldwide.
-</p>
-
-</div>
-
-<div className="brands-row">
-
-<div className="brand-tile">
-<img src="/hikvision.png"/>
-</div>
-
-<div className="brand-tile">
-<img src="/dahua.png"/>
-</div>
-
-<div className="brand-tile">
-<img src="/provision.png"/>
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<section className="section section-alt">
-
-<div className="container">
-
-<div className="section-head">
-
-<div className="eyebrow">
-Our Services
-</div>
-
-<h2>Complete security solutions</h2>
-
-</div>
-
-<div className="cards-grid">
-
-<div className="info-card">
-
-<h3>Cybersecurity</h3>
-
-<p>
-Protect systems, networks and sensitive data.
-</p>
-
-</div>
-
-<div className="info-card">
-
-<h3>CCTV Installation</h3>
-
-<p>
-Professional surveillance camera installations.
-</p>
-
-</div>
-
-<div className="info-card">
-
-<h3>CCTV Maintenance</h3>
-
-<p>
-Repair, upgrades and system monitoring.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<section className="section">
-
-<div className="container">
-
-<div className="section-head">
-
-<div className="eyebrow">
-Industries
-</div>
-
-<h2>Security for serious organizations</h2>
-
-</div>
-
-<div className="cards-grid">
-
-<div className="info-card">
-<h3>Law Firms</h3>
-</div>
-
-<div className="info-card">
-<h3>Accounting Firms</h3>
-</div>
-
-<div className="info-card">
-<h3>Schools</h3>
-</div>
-
-<div className="info-card">
-<h3>Warehouses</h3>
-</div>
-
-<div className="info-card">
-<h3>Construction Sites</h3>
-</div>
-
-<div className="info-card">
-<h3>Corporate Offices</h3>
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<section className="section section-alt">
-
-<div className="container">
-
-<div className="section-head">
-
-<div className="eyebrow">
-Send Inquiry
-</div>
-
-<h2>Request a security consultation</h2>
-
-</div>
-
-<form className="inquiry-form">
-
-<input placeholder="Your Name"/>
-
-<input placeholder="Email"/>
-
-<input placeholder="Company"/>
-
-<select>
-
-<option>Cybersecurity</option>
-
-<option>CCTV Installation</option>
-
-<option>CCTV Maintenance</option>
-
-<option>School Security</option>
-
-<option>Security Consultation</option>
-
-</select>
-
-<textarea placeholder="Describe your security needs"/>
-
-<button className="btn btn-primary">
-Send Inquiry
-</button>
-
-</form>
-
-</div>
-
-</section>
-
-
-</main>
-
-<Footer/>
-
-</div>
-
-)
-
+export default function Home() {
+  return (
+    <div className="page-shell">
+      <Header />
+
+      <main>
+        <section className="hero-section">
+          <div className="container hero-grid">
+            <div>
+              <div className="eyebrow">Enterprise Security Solutions</div>
+
+              <h1 className="hero-title">
+                Professional Cybersecurity and Surveillance Protection
+              </h1>
+
+              <p className="hero-copy">
+                Dt3bza Security provides cybersecurity protection, CCTV
+                installation, system maintenance, school security support and
+                business security consulting for serious organizations.
+              </p>
+
+              <div className="hero-actions">
+                <a
+                  className="btn btn-primary"
+                  href="https://wa.me/27646993670?text=Hello%20I%20am%20interested%20in%20your%20security%20services"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Request Consultation
+                </a>
+
+                <NavLink to="/cybersecurity" className="btn btn-secondary">
+                  Explore Services
+                </NavLink>
+              </div>
+
+              <div className="hero-badges">
+                <span>Cybersecurity</span>
+                <span>CCTV Installation</span>
+                <span>Business Protection</span>
+                <span>School Security</span>
+              </div>
+            </div>
+
+            <div className="hero-card">
+              <div className="card-label">Why Businesses Choose Us</div>
+              <h3>Security support that feels structured and premium.</h3>
+              <ul>
+                <li>Cybersecurity risk reviews for real business environments</li>
+                <li>CCTV installation, upgrades, maintenance and support</li>
+                <li>Security solutions for schools, offices and facilities</li>
+                <li>Professional security consulting and protection planning</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section className="stats-section">
+          <div className="container stats-grid">
+            <div className="stat-card">
+              <strong>Digital Protection</strong>
+              <p>Cybersecurity support for systems, networks and sensitive data.</p>
+            </div>
+
+            <div className="stat-card">
+              <strong>Physical Security</strong>
+              <p>CCTV, surveillance support, upgrades and maintenance services.</p>
+            </div>
+
+            <div className="stat-card">
+              <strong>Tender-Ready Positioning</strong>
+              <p>FORTYXIS SECURITY trading identity for government and contract work.</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="section">
+          <div className="container">
+            <div className="section-head">
+              <div className="eyebrow">Trusted CCTV Platforms</div>
+              <h2>Surveillance brands and security identities we support</h2>
+              <p>
+                We work with recognized surveillance platforms and maintain a
+                stronger commercial identity for formal contracts and tenders.
+              </p>
+            </div>
+
+            <div className="brands-row text-brands">
+              <div className="brand-tile text-tile">
+                <strong>Hikvision</strong>
+              </div>
+
+              <div className="brand-tile text-tile">
+                <strong>Dahua</strong>
+              </div>
+
+              <div className="brand-tile text-tile">
+                <strong>Provision ISR</strong>
+              </div>
+
+              <div className="brand-tile text-tile accent-tile">
+                <strong>FORTYXIS SECURITY</strong>
+                <span>Trading name for tenders & government contracts</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="section section-alt">
+          <div className="container">
+            <div className="section-head">
+              <div className="eyebrow">Core Services</div>
+              <h2>Complete security solutions under one brand</h2>
+              <p>
+                Our offer combines cybersecurity consulting, surveillance
+                support, school security and business protection.
+              </p>
+            </div>
+
+            <div className="cards-grid">
+              <article className="info-card">
+                <h3>Cybersecurity</h3>
+                <p>
+                  Protect systems, networks, users and sensitive business data
+                  through structured security reviews and protection planning.
+                </p>
+                <NavLink to="/cybersecurity" className="text-link">
+                  View cybersecurity services
+                </NavLink>
+              </article>
+
+              <article className="info-card">
+                <h3>CCTV Installation</h3>
+                <p>
+                  Professional camera system consultation, installation,
+                  maintenance, upgrades and support for existing environments.
+                </p>
+                <NavLink to="/cctv" className="text-link">
+                  View CCTV services
+                </NavLink>
+              </article>
+
+              <article className="info-card">
+                <h3>School Security</h3>
+                <p>
+                  Better visibility, safer entrances, perimeter monitoring and
+                  stronger school security support.
+                </p>
+                <NavLink to="/schools" className="text-link">
+                  View school security
+                </NavLink>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section className="section">
+          <div className="container">
+            <div className="section-head">
+              <div className="eyebrow">Cybersecurity Packages</div>
+              <h2>Professional cybersecurity protection</h2>
+              <p>
+                Digital security services are structured separately from CCTV
+                installation and physical security work.
+              </p>
+            </div>
+
+            <div className="cards-grid">
+              <article className="info-card pricing-card">
+                <h3>Security Assessment</h3>
+                <p>
+                  Basic vulnerability review and security report for small
+                  businesses that need clearer risk visibility.
+                </p>
+                <strong className="price">Starting from $350</strong>
+              </article>
+
+              <article className="info-card pricing-card featured-card">
+                <div className="featured-label">Recommended</div>
+                <h3>Business Protection</h3>
+                <p>
+                  Network security review, vulnerability scanning and system
+                  hardening for businesses that need stronger protection.
+                </p>
+                <strong className="price">Starting from $850</strong>
+              </article>
+
+              <article className="info-card pricing-card">
+                <h3>Enterprise Security</h3>
+                <p>
+                  Full security audit, consulting and long-term protection
+                  planning for more complex operational environments.
+                </p>
+                <strong className="price">Custom Pricing</strong>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section className="section section-alt">
+          <div className="container">
+            <div className="section-head">
+              <div className="eyebrow">Industries</div>
+              <h2>We support organizations that need stronger protection</h2>
+              <p>
+                Dt3bza Security is positioned for businesses and institutions
+                that care about operational resilience, risk reduction and a
+                more serious security presence.
+              </p>
+            </div>
+
+            <div className="cards-grid">
+              <article className="info-card">
+                <h3>Law Firms</h3>
+                <p>Protect confidential client data, systems and office environments.</p>
+              </article>
+
+              <article className="info-card">
+                <h3>Accounting Firms</h3>
+                <p>Improve protection around financial data, access and business systems.</p>
+              </article>
+
+              <article className="info-card">
+                <h3>Schools</h3>
+                <p>Improve visibility, monitoring and safety across educational environments.</p>
+              </article>
+
+              <article className="info-card">
+                <h3>Construction</h3>
+                <p>Strengthen site visibility and reduce avoidable security exposure.</p>
+              </article>
+
+              <article className="info-card">
+                <h3>Warehouses</h3>
+                <p>Support surveillance, monitoring and physical security across operational sites.</p>
+              </article>
+
+              <article className="info-card">
+                <h3>Corporate Offices</h3>
+                <p>Combine digital security with stronger physical protection and oversight.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section className="section inquiry-section">
+          <div className="container">
+            <div className="section-head">
+              <div className="eyebrow">Send an Inquiry</div>
+              <h2>Request a security consultation</h2>
+              <p>
+                Tell us what type of protection you need and our team will
+                contact you.
+              </p>
+            </div>
+
+            <form
+              action="https://formspree.io/f/xqapavdz"
+              method="POST"
+              className="inquiry-form"
+            >
+              <div className="form-grid">
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Your Name"
+                  required
+                />
+
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email Address"
+                  required
+                />
+
+                <input
+                  type="text"
+                  name="company"
+                  placeholder="Company / Organization"
+                />
+
+                <select name="service" defaultValue="Cybersecurity">
+                  <option>Cybersecurity</option>
+                  <option>CCTV Installation</option>
+                  <option>CCTV Repair / Maintenance</option>
+                  <option>School Security</option>
+                  <option>Security Consultation</option>
+                </select>
+              </div>
+
+              <textarea
+                name="message"
+                placeholder="Describe what security help you need"
+                rows="6"
+              />
+
+              <button type="submit" className="btn btn-primary">
+                Send Inquiry
+              </button>
+            </form>
+          </div>
+        </section>
+
+        <section className="section section-alt">
+          <div className="container">
+            <div className="section-head">
+              <div className="eyebrow">Client Confidentiality</div>
+              <h2>Security conversations stay private</h2>
+              <p>
+                Dt3bza Security treats client discussions, infrastructure
+                details, risk findings and protection recommendations as
+                confidential. Information shared during consultations, audits,
+                enquiries or security assessments is handled professionally and
+                is not disclosed outside the scope of the client relationship.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="section">
+          <div className="container cta-panel">
+            <div>
+              <div className="eyebrow">Free Strategy Review</div>
+              <h2>Start with a short security conversation.</h2>
+              <p>
+                We review visible risks, discuss your environment and recommend
+                the most suitable protection path for your business or facility.
+              </p>
+            </div>
+
+            <div className="cta-actions">
+              <a
+                className="btn btn-primary"
+                href="https://wa.me/27646993670?text=Hello%20I%20am%20interested%20in%20your%20security%20services"
+                target="_blank"
+                rel="noreferrer"
+              >
+                WhatsApp Us
+              </a>
+
+              <NavLink to="/contact" className="btn btn-secondary">
+                Contact Page
+              </NavLink>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <a
+        className="floating-whatsapp"
+        href="https://wa.me/27646993670?text=Hello%20I%20am%20interested%20in%20your%20security%20services"
+        target="_blank"
+        rel="noreferrer"
+      >
+        WhatsApp Us
+      </a>
+
+      <Footer />
+    </div>
+  );
 }
