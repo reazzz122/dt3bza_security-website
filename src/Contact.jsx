@@ -66,7 +66,7 @@ export default function Contact() {
             <article className="info-card">
               <h3>Phone</h3>
               <p>Call our team directly.</p>
-              <p>064 699 3670</p>
+              <p>068 486 1332</p>
             </article>
           </div>
         </div>
