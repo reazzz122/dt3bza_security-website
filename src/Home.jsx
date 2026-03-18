@@ -1,16 +1,14 @@
-import { NavLink } from "react-router-dom";
-
 function Header() {
   return (
     <header className="site-header">
       <div className="container header-inner">
-        <NavLink to="/" className="brand">
+        <a href="#top" className="brand">
           <img src="/logo.png" alt="Dt3bza Security" className="brand-logo" />
           <div className="brand-text">
             <strong>Dt3bza Security</strong>
             <span>Cybersecurity • Surveillance • Business Protection</span>
           </div>
-        </NavLink>
+        </a>
 
         <nav className="main-nav">
           <a href="#top">Home</a>
@@ -182,10 +180,9 @@ export default function Home() {
               <div className="eyebrow">Cybersecurity Packages</div>
               <h2>Professional cybersecurity protection</h2>
               <p>
-                Digital security services are priced separately from CCTV and
-                physical installations. Physical security work is quoted
-                individually based on site size, camera count, infrastructure
-                and travel requirements.
+                Pricing shown below applies to digital cybersecurity services
+                only. CCTV installation and other physical security work are
+                quoted separately based on site requirements.
               </p>
             </div>
 
@@ -194,7 +191,7 @@ export default function Home() {
                 <h3>Security Assessment</h3>
                 <p>
                   Basic vulnerability review and security report for small
-                  businesses that need clearer risk visibility.
+                  businesses that need clearer visibility into risk.
                 </p>
                 <strong className="price">Starting from R6 500</strong>
               </article>
@@ -229,7 +226,7 @@ export default function Home() {
               <p>
                 CCTV installations, surveillance maintenance, school security
                 setups and physical security work are quoted individually.
-                Message us for a site discussion and custom quotation.
+                Message us directly for a site discussion and custom quote.
               </p>
             </div>
 
@@ -251,7 +248,7 @@ export default function Home() {
               </article>
 
               <article className="info-card">
-                <h3>Important Travel Note</h3>
+                <h3>Important Assessment Note</h3>
                 <p>
                   Free on-site assessment applies within a 50km radius only.
                   Areas beyond 50km may include a call-out or assessment fee.
