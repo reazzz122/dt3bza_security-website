@@ -9,7 +9,7 @@ export default function Cybersecurity() {
             <img src="/logo.png" alt="Dt3bza Security" className="brand-logo" />
             <div className="brand-text">
               <strong>Dt3bza Security</strong>
-              <span>Cybersecurity, Surveillance & Business Protection</span>
+              <span>Cybersecurity • Surveillance • Business Protection</span>
             </div>
           </NavLink>
 
@@ -17,30 +17,74 @@ export default function Cybersecurity() {
             <NavLink to="/">Home</NavLink>
             <NavLink to="/cybersecurity">Cybersecurity</NavLink>
             <NavLink to="/cctv">CCTV</NavLink>
-            <NavLink to="/schools">School Security</NavLink>
-            <NavLink to="/contact" className="nav-cta">Contact</NavLink>
+            <NavLink to="/schools">Schools</NavLink>
+            <NavLink to="/contact" className="nav-cta">
+              Contact
+            </NavLink>
           </nav>
         </div>
       </header>
 
-      <main className="inner-page">
+      <main className="section">
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">Cybersecurity Services</div>
-            <h1 className="page-title">Protect systems, networks, and business data.</h1>
+            <h2>Professional cybersecurity protection</h2>
             <p>
-              Dt3bza Security helps businesses reduce cyber risk, improve system
-              resilience, and strengthen their security posture.
+              Digital cybersecurity services are available remotely and priced
+              separately from physical security work.
             </p>
           </div>
 
           <div className="cards-grid">
-            <article className="info-card"><h3>Security Risk Assessments</h3><p>Identify vulnerabilities across users, devices, systems, and workflows.</p></article>
-            <article className="info-card"><h3>Network Security Hardening</h3><p>Improve protection across routers, internal systems, permissions, and access points.</p></article>
-            <article className="info-card"><h3>Endpoint Protection</h3><p>Strengthen device-level security to reduce avoidable compromise risk.</p></article>
-            <article className="info-card"><h3>Backup & Recovery Planning</h3><p>Reduce downtime and data loss with structured resilience planning.</p></article>
-            <article className="info-card"><h3>Business Security Strategy</h3><p>Support organizations that need stronger operational protection and clearer security direction.</p></article>
-            <article className="info-card"><h3>Remote Support</h3><p>Digital security consulting can be delivered remotely for clients worldwide.</p></article>
+            <article className="info-card pricing-card">
+              <h3>Security Assessment</h3>
+              <p>
+                Basic vulnerability review and security report for businesses
+                that need clearer visibility into risk.
+              </p>
+              <strong className="price">From R6 500</strong>
+            </article>
+
+            <article className="info-card pricing-card featured-card">
+              <div className="featured-label">Recommended</div>
+              <h3>Business Protection</h3>
+              <p>
+                Network security review, vulnerability scanning and system
+                hardening for businesses that need stronger protection.
+              </p>
+              <strong className="price">From R15 700</strong>
+            </article>
+
+            <article className="info-card pricing-card">
+              <h3>Enterprise Security</h3>
+              <p>
+                Full security audit, consulting and long-term protection
+                planning for more complex environments.
+              </p>
+              <strong className="price">Custom Pricing</strong>
+            </article>
+          </div>
+
+          <div className="section-head" style={{ marginTop: "48px" }}>
+            <h2>What’s included</h2>
+          </div>
+
+          <div className="cards-grid">
+            <article className="info-card">
+              <h3>Risk Reviews</h3>
+              <p>Identify weaknesses across systems, devices and workflows.</p>
+            </article>
+
+            <article className="info-card">
+              <h3>Network Security</h3>
+              <p>Review internal security posture and exposure areas.</p>
+            </article>
+
+            <article className="info-card">
+              <h3>Protection Planning</h3>
+              <p>Clear recommendations for strengthening resilience.</p>
+            </article>
           </div>
         </div>
       </main>
