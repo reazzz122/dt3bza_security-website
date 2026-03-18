@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-export default function CCTV() {
+export default function Contact() {
   return (
     <div className="page-shell">
       <header className="site-header">
@@ -28,29 +28,37 @@ export default function CCTV() {
       <main className="section">
         <div className="container">
           <div className="section-head">
-            <div className="eyebrow">CCTV & Surveillance</div>
-            <h2>Custom quotes for installations and site-based work</h2>
+            <div className="eyebrow">Contact</div>
+            <h2>Request a consultation or quote</h2>
             <p>
-              CCTV installations, surveillance maintenance, upgrades and physical
-              security work are quoted individually based on site requirements.
+              For the fastest response, contact us directly on WhatsApp or by
+              email.
             </p>
           </div>
 
           <div className="cards-grid">
             <article className="info-card">
-              <h3>CCTV Installation</h3>
-              <p>
-                Camera installations, recorder setup and surveillance expansion
-                for business and school environments.
-              </p>
+              <h3>WhatsApp</h3>
+              <p>Best for quick consultations, CCTV quotes and urgent enquiries.</p>
+              <a
+                className="btn btn-primary"
+                href="https://wa.me/27646993670?text=Hello%20I%20am%20interested%20in%20your%20security%20services"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Message on WhatsApp
+              </a>
             </article>
 
             <article className="info-card">
-              <h3>Maintenance & Repairs</h3>
-              <p>
-                Ongoing support, troubleshooting, repairs and upgrades for
-                existing surveillance systems.
-              </p>
+              <h3>Email</h3>
+              <p>Best for written project requests and formal discussions.</p>
+              <a
+                className="btn btn-secondary"
+                href="mailto:info@dt3bza-security.com?subject=Security%20Inquiry"
+              >
+                info@dt3bza-security.com
+              </a>
             </article>
 
             <article className="info-card">
@@ -60,17 +68,6 @@ export default function CCTV() {
                 Beyond 50km, assessment or call-out fees may apply.
               </p>
             </article>
-          </div>
-
-          <div style={{ marginTop: "28px" }}>
-            <a
-              className="btn btn-primary"
-              href="https://wa.me/27646993670?text=Hello%20I%20need%20a%20quote%20for%20CCTV%20or%20physical%20security%20installation"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Message for Quote
-            </a>
           </div>
         </div>
       </main>
