@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-export default function Contact() {
+export default function CCTV() {
   return (
     <div className="page-shell">
       <header className="site-header">
@@ -9,7 +9,7 @@ export default function Contact() {
             <img src="/logo.png" alt="Dt3bza Security" className="brand-logo" />
             <div className="brand-text">
               <strong>Dt3bza Security</strong>
-              <span>Cybersecurity, Surveillance & Business Protection</span>
+              <span>Cybersecurity • Surveillance • Business Protection</span>
             </div>
           </NavLink>
 
@@ -17,7 +17,7 @@ export default function Contact() {
             <NavLink to="/">Home</NavLink>
             <NavLink to="/cybersecurity">Cybersecurity</NavLink>
             <NavLink to="/cctv">CCTV</NavLink>
-            <NavLink to="/schools">School Security</NavLink>
+            <NavLink to="/schools">Schools</NavLink>
             <NavLink to="/contact" className="nav-cta">
               Contact
             </NavLink>
@@ -25,49 +25,52 @@ export default function Contact() {
         </div>
       </header>
 
-      <main className="inner-page">
+      <main className="section">
         <div className="container">
           <div className="section-head">
-            <div className="eyebrow">Contact</div>
-            <h1 className="page-title">Book a security consultation</h1>
+            <div className="eyebrow">CCTV & Surveillance</div>
+            <h2>Custom quotes for installations and site-based work</h2>
             <p>
-              Contact Dt3bza Security to discuss cybersecurity, CCTV systems,
-              school security or general business protection solutions.
+              CCTV installations, surveillance maintenance, upgrades and physical
+              security work are quoted individually based on site requirements.
             </p>
           </div>
 
           <div className="cards-grid">
             <article className="info-card">
-              <h3>WhatsApp</h3>
-              <p>The fastest way to reach us.</p>
-
-              <a
-                className="btn btn-primary"
-                href="https://wa.me/27646993670"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Message on WhatsApp
-              </a>
+              <h3>CCTV Installation</h3>
+              <p>
+                Camera installations, recorder setup and surveillance expansion
+                for business and school environments.
+              </p>
             </article>
 
             <article className="info-card">
-              <h3>Email</h3>
-              <p>Send us a detailed enquiry.</p>
-
-              <a
-                className="btn btn-secondary"
-                href="mailto:info@dt3bza-security.com"
-              >
-                info@dt3bza-security.com
-              </a>
+              <h3>Maintenance & Repairs</h3>
+              <p>
+                Ongoing support, troubleshooting, repairs and upgrades for
+                existing surveillance systems.
+              </p>
             </article>
 
             <article className="info-card">
-              <h3>Phone</h3>
-              <p>Call our team directly.</p>
-              <p>068 486 1332</p>
+              <h3>Assessment Radius</h3>
+              <p>
+                Free on-site assessment applies within a 50km radius only.
+                Beyond 50km, assessment or call-out fees may apply.
+              </p>
             </article>
+          </div>
+
+          <div style={{ marginTop: "28px" }}>
+            <a
+              className="btn btn-primary"
+              href="https://wa.me/27646993670?text=Hello%20I%20need%20a%20quote%20for%20CCTV%20or%20physical%20security%20installation"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Message for Quote
+            </a>
           </div>
         </div>
       </main>
