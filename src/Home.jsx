@@ -1,55 +1,5 @@
 import { NavLink } from "react-router-dom";
-
-function Header() {
-  return (
-    <header className="site-header">
-      <div className="container header-inner">
-        <NavLink to="/" className="brand">
-          <img src="/logo.png" alt="DT3BZA Security" className="brand-logo" />
-          <div className="brand-text">
-            <strong>DT3BZA SECURITY</strong>
-            <span>Cybersecurity · Surveillance · Intelligence</span>
-          </div>
-        </NavLink>
-        <nav className="main-nav">
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/cybersecurity">Cybersecurity</NavLink>
-          <NavLink to="/cctv">CCTV</NavLink>
-          <NavLink to="/schools">Schools</NavLink>
-          <NavLink to="/dt3app">DT3 App</NavLink>
-          <NavLink to="/contact" className="nav-cta">Contact</NavLink>
-        </nav>
-      </div>
-    </header>
-  );
-}
-
-function Footer() {
-  return (
-    <footer className="site-footer">
-      <div className="container">
-        <div className="footer-inner">
-          <div className="footer-brand">
-            <strong>DT3BZA SECURITY</strong>
-            <p>Cybersecurity · Surveillance · Tactical Intelligence</p>
-            <p style={{marginTop:6,fontSize:'0.78rem'}}>Trading name for tenders: <strong style={{color:'#c0c8d8'}}>FORTYXIS SECURITY</strong></p>
-          </div>
-          <nav className="footer-links">
-            <NavLink to="/cybersecurity">Cybersecurity</NavLink>
-            <NavLink to="/cctv">CCTV</NavLink>
-            <NavLink to="/schools">Schools</NavLink>
-            <NavLink to="/dt3app">DT3 App</NavLink>
-            <NavLink to="/contact">Contact</NavLink>
-          </nav>
-        </div>
-        <div className="footer-bottom">
-          <p>© 2025 DT3BZA SECURITY · WESTERN CAPE, SOUTH AFRICA</p>
-          <p>DT3 TACTICAL INTELLIGENCE PLATFORM v1.0</p>
-        </div>
-      </div>
-    </footer>
-  );
-}
+import { Header, Footer } from "./Layout.jsx";
 
 export default function Home() {
   return (
@@ -65,7 +15,7 @@ export default function Home() {
               <h1 className="hero-title">
                 Professional<br />
                 <span>Cybersecurity</span><br />
-                & Surveillance
+                &amp; Surveillance
               </h1>
               <p className="hero-copy">
                 DT3BZA Security delivers cybersecurity protection, CCTV surveillance,
@@ -105,10 +55,10 @@ export default function Home() {
           <div className="container app-section-inner">
             <div>
               <div className="eyebrow">Now Available</div>
-              <h2 style={{fontFamily:"'Rajdhani',sans-serif",fontSize:'clamp(2rem,4vw,3rem)',fontWeight:700,letterSpacing:'-0.01em',lineHeight:1,marginBottom:14}}>
+              <h2 style={{fontFamily:"'Rajdhani',sans-serif",fontSize:"clamp(2rem,4vw,3rem)",fontWeight:700,letterSpacing:"-0.01em",lineHeight:1,marginBottom:14}}>
                 DT3 Tactical<br />Intelligence App
               </h2>
-              <p style={{color:'var(--muted)',lineHeight:1.7,marginBottom:24,fontSize:'1rem'}}>
+              <p style={{color:"var(--muted)",lineHeight:1.7,marginBottom:24,fontSize:"1rem"}}>
                 A live crime intelligence platform built for private security companies
                 in the Western Cape. Real-time incident reporting, live maps,
                 panic alerts, guard tours and community intelligence — all in one app.
@@ -130,14 +80,14 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-              <div style={{marginTop:28,display:'flex',gap:12,flexWrap:'wrap'}}>
+              <div style={{marginTop:28,display:"flex",gap:12,flexWrap:"wrap"}}>
                 <NavLink to="/dt3app" className="btn btn-primary">Learn More About DT3</NavLink>
                 <a className="btn btn-secondary" href="https://wa.me/27646993670?text=Hello%20I%20want%20to%20register%20my%20company%20on%20DT3" target="_blank" rel="noreferrer">Register Your Company</a>
               </div>
             </div>
             <div className="app-mockup">
               <div className="app-mockup-label">
-                <span className="live-dot" />
+                <span className="live-dot"></span>
                 LIVE OPERATIONS · WESTERN CAPE
               </div>
               <div className="app-screen">
@@ -146,7 +96,7 @@ export default function Home() {
                     <div className="app-logo-text">DT3</div>
                     <div className="app-sub">WESTERN CAPE</div>
                   </div>
-                  <div className="live-pill"><span className="live-dot" />LIVE 2:28 AM</div>
+                  <div className="live-pill"><span className="live-dot" />LIVE</div>
                 </div>
                 <div className="app-stats">
                   {[{v:"4",l:"ACTIVE",c:"var(--red)"},{v:"2",l:"CRITICAL",c:"#9b4be8"},{v:"4",l:"ON DUTY",c:"var(--green)"},{v:"1",l:"CLOSED",c:"var(--gold)"}].map((s,i)=>(
@@ -221,8 +171,83 @@ export default function Home() {
           </div>
         </section>
 
-        {/* PRICING */}
+        {/* INDUSTRIES */}
         <section className="section section-alt">
           <div className="container">
             <div className="section-head">
-              <div className="eyebrow">Cybersecurity Packages</div>
+              <div className="eyebrow">Industries</div>
+              <h2>Organisations that need stronger protection</h2>
+            </div>
+            <div className="cards-grid">
+              {[
+                {t:"Law Firms",d:"Protect confidential client data, systems and office environments."},
+                {t:"Accounting Firms",d:"Improve protection around financial data, access and business systems."},
+                {t:"Schools",d:"Improve visibility, monitoring and safety across educational environments."},
+                {t:"Construction",d:"Strengthen site visibility and reduce avoidable security exposure."},
+                {t:"Warehouses",d:"Surveillance, monitoring and physical security across operational sites."},
+                {t:"Security Companies",d:"Use the DT3 app for live intelligence, dispatch and officer management."},
+              ].map((ind,i)=>(
+                <article className="info-card" key={i}>
+                  <h3>{ind.t}</h3>
+                  <p>{ind.d}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* QUOTE CTA */}
+        <section className="section">
+          <div className="container">
+            <div className="cta-panel">
+              <div>
+                <div className="eyebrow">Pricing</div>
+                <h2>Every quote is tailored to your business.</h2>
+                <p>We assess your specific environment, risks and requirements before recommending a solution. Contact us for a free consultation.</p>
+              </div>
+              <div className="cta-actions">
+                <a className="btn btn-primary" href="https://wa.me/27646993670?text=Hello%20I%20would%20like%20to%20request%20a%20quote" target="_blank" rel="noreferrer">Request a Quote</a>
+                <NavLink to="/contact" className="btn btn-secondary">Contact Us</NavLink>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CONFIDENTIALITY */}
+        <section className="section section-alt">
+          <div className="container">
+            <div className="section-head">
+              <div className="eyebrow">Client Confidentiality</div>
+              <h2>Security conversations stay private</h2>
+              <p>DT3BZA Security treats client discussions, infrastructure details, risk findings and recommendations as confidential. Information shared during consultations, audits or assessments is handled professionally and never disclosed outside the client relationship.</p>
+            </div>
+          </div>
+        </section>
+
+        {/* FINAL CTA */}
+        <section className="section">
+          <div className="container">
+            <div className="cta-panel">
+              <div>
+                <div className="eyebrow">Free Strategy Review</div>
+                <h2>Start with a short security conversation.</h2>
+                <p>We review visible risks, discuss your environment and recommend the most suitable protection path for your business or facility.</p>
+              </div>
+              <div className="cta-actions">
+                <a className="btn btn-primary" href="https://wa.me/27646993670?text=Hello%20I%20am%20interested%20in%20a%20security%20consultation" target="_blank" rel="noreferrer">WhatsApp Us</a>
+                <NavLink to="/contact" className="btn btn-secondary">Contact Page</NavLink>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <a className="floating-whatsapp" href="https://wa.me/27646993670?text=Hello%20I%20am%20interested%20in%20your%20security%20services" target="_blank" rel="noreferrer">
+        WhatsApp Us
+      </a>
+
+      <Footer />
+    </div>
+  );
+}
