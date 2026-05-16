@@ -7,6 +7,8 @@ import CCTV from "./CCTV.jsx";
 import SchoolSecurity from "./SchoolSecurity.jsx";
 import Contact from "./Contact.jsx";
 import DT3App from "./DT3App.jsx";
+import PrivacyPolicy from "./PrivacyPolicy.jsx";
+import Terms from "./Terms.jsx";
 import "./styles.css";
 
 function App() {
@@ -19,6 +21,8 @@ function App() {
         <Route path="/schools" element={<SchoolSecurity />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/dt3app" element={<DT3App />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route path="/terms" element={<Terms />} />
       </Routes>
     </HashRouter>
   );
