@@ -151,6 +151,14 @@ img{max-width:100%;display:block;}
 .fade-up-2{animation:fadeUp 0.6s 0.1s ease both;}
 .fade-up-3{animation:fadeUp 0.6s 0.2s ease both;}
 
+/* BRANDS */
+.brands-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.brand-tile{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:28px 20px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;transition:border-color 0.2s;}
+.brand-tile:hover{border-color:var(--border2);}
+.brand-tile-img{height:48px;width:auto;max-width:140px;object-fit:contain;filter:grayscale(1) brightness(0.85);transition:filter 0.2s;}
+.brand-tile:hover .brand-tile-img{filter:grayscale(0) brightness(1);}
+.brand-tile-name{font-family:'Rajdhani',sans-serif;font-size:0.82rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);}
+
 /* RESPONSIVE */
-@media(max-width:1000px){.hero-grid,.app-section-inner,.stats-grid,.cards-grid,.cta-panel{grid-template-columns:1fr;}.stat-card{border-right:none;border-bottom:1px solid var(--border);}.stat-card:last-child{border-bottom:none;}}
+@media(max-width:1000px){.hero-grid,.app-section-inner,.stats-grid,.cards-grid,.cta-panel,.brands-grid{grid-template-columns:1fr;}.stat-card{border-right:none;border-bottom:1px solid var(--border);}.stat-card:last-child{border-bottom:none;}}
 @media(max-width:720px){.header-inner{flex-direction:column;align-items:flex-start;}.main-nav{width:100%;flex-wrap:wrap;gap:4px;}.main-nav a{font-size:0.78rem;padding:7px 10px;}.hero-section,.section{padding:56px 0;}.hero-title{font-size:2.6rem;}.cta-panel{padding:24px;}.floating-whatsapp{left:14px;right:14px;text-align:center;}}
