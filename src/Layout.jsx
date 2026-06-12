@@ -6,10 +6,6 @@ export function Header() {
       <div className="container header-inner">
         <NavLink to="/" className="brand">
           <img src="/logo.png" alt="DT3BZA Security" className="brand-logo" />
-          <div className="brand-text">
-            <strong>DT3BZA SECURITY</strong>
-            <span>Cybersecurity · Surveillance · Intelligence</span>
-          </div>
         </NavLink>
         <nav className="main-nav">
           <NavLink to="/">Home</NavLink>
@@ -56,7 +52,6 @@ export function Footer() {
             </nav>
           </div>
         </div>
-
         <div className="footer-bottom">
           <p style={{fontSize:"0.78rem",color:"var(--dim)"}}>
             © {year} DT3BZA Security (Pty) Ltd. All rights reserved. DT3, DT3BZA Security and the scorpion logo are proprietary trademarks of DT3BZA Security. Unauthorised use is prohibited.
