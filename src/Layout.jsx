@@ -8,12 +8,11 @@ export function Header() {
           <img src="/logo.png" alt="DT3BZA Security" className="brand-logo" />
         </NavLink>
         <nav className="main-nav">
-          <NavLink to="/">Home</NavLink>
           <NavLink to="/cybersecurity">Cybersecurity</NavLink>
           <NavLink to="/cctv">CCTV</NavLink>
           <NavLink to="/schools">Schools</NavLink>
           <NavLink to="/dt3app">DT3 App</NavLink>
-          <NavLink to="/contact" className="nav-cta">Contact</NavLink>
+          <a className="nav-cta" href="https://wa.me/27646993670?text=Hello%20I%20am%20interested%20in%20your%20security%20services" target="_blank" rel="noreferrer">Contact</a>
         </nav>
       </div>
     </header>
@@ -27,17 +26,14 @@ export function Footer() {
       <div className="container">
         <div className="footer-inner">
           <div className="footer-brand">
-            <strong>DT3BZA SECURITY</strong>
-            <p>Cybersecurity · CCTV Surveillance · Tactical Intelligence · Western Cape</p>
-            <p style={{marginTop:6,fontSize:"0.78rem"}}>
-              Also trading as: <strong style={{color:"#c0c8d8"}}>FORTYXIS SECURITY</strong> (Government & Tender Identity)
-            </p>
-            <p style={{marginTop:6,fontSize:"0.72rem",color:"var(--dim)"}}>
-              CIPC Registered · CSD Registered · POPIA Compliant
-            </p>
+            <strong>DT3BZA Security</strong>
+            <p>Cybersecurity · CCTV Surveillance · Tactical Intelligence</p>
+            <p style={{marginTop:6}}>Also trading as <strong style={{color:"rgba(255,255,255,0.55)"}}>FORTYXIS SECURITY</strong></p>
+            <p style={{marginTop:4,fontSize:"0.72rem"}}>CIPC Registered · CSD Registered · POPIA Compliant · Western Cape</p>
           </div>
           <div style={{display:"flex",flexDirection:"column",gap:"20px",alignItems:"flex-end"}}>
             <nav className="footer-links">
+              <NavLink to="/">Home</NavLink>
               <NavLink to="/cybersecurity">Cybersecurity</NavLink>
               <NavLink to="/cctv">CCTV</NavLink>
               <NavLink to="/schools">Schools</NavLink>
@@ -45,20 +41,16 @@ export function Footer() {
               <NavLink to="/contact">Contact</NavLink>
             </nav>
             <nav className="footer-links">
-              <NavLink to="/privacy" style={{fontSize:"0.75rem"}}>Privacy Policy</NavLink>
-              <NavLink to="/terms" style={{fontSize:"0.75rem"}}>Terms of Service</NavLink>
-              <a href="mailto:info@dt3bza-security.com" style={{fontSize:"0.75rem"}}>info@dt3bza-security.com</a>
-              <a href="https://wa.me/27646993670" target="_blank" rel="noreferrer" style={{fontSize:"0.75rem"}}>+27 64 699 3670</a>
+              <NavLink to="/privacy">Privacy Policy</NavLink>
+              <NavLink to="/terms">Terms</NavLink>
+              <a href="mailto:info@dt3bza-security.com">info@dt3bza-security.com</a>
+              <a href="https://wa.me/27646993670" target="_blank" rel="noreferrer">+27 64 699 3670</a>
             </nav>
           </div>
         </div>
         <div className="footer-bottom">
-          <p style={{fontSize:"0.78rem",color:"var(--dim)"}}>
-            © {year} DT3BZA Security (Pty) Ltd. All rights reserved. DT3, DT3BZA Security and the scorpion logo are proprietary trademarks of DT3BZA Security. Unauthorised use is prohibited.
-          </p>
-          <p style={{fontSize:"0.72rem",color:"var(--dim)"}}>
-            POPIA Compliant · ECT Act Compliant · Western Cape, South Africa
-          </p>
+          <p>© {year} DT3BZA Security (Pty) Ltd. All rights reserved. Scorpion logo and DT3 are proprietary trademarks.</p>
+          <p>POPIA Compliant · ECT Act Compliant · Western Cape, South Africa</p>
         </div>
       </div>
     </footer>
