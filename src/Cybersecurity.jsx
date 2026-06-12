@@ -4,65 +4,53 @@ export default function Cybersecurity() {
   return (
     <div className="page-shell">
       <Header />
-      <main className="section">
-        <div className="container">
-
-          <div className="section-head">
-            <div className="eyebrow">Cybersecurity Services</div>
-            <h2>Professional cybersecurity protection</h2>
-            <p>Digital cybersecurity services available remotely. All engagements are scoped individually and quoted after a free consultation — no generic packages.</p>
+      <section className="hero-cinematic" style={{minHeight:'70vh'}}>
+        <div className="hero-bg"/>
+        <div className="hero-grid-lines"/>
+        <div className="container hero-content fade-up">
+          <div className="hero-eyebrow">Service 01</div>
+          <h1 className="hero-title-cinematic">Cybersecurity<br /><em>Protection.</em></h1>
+          <p className="hero-subtitle">Digital security services delivered remotely. Every engagement scoped individually after a free consultation.</p>
+          <div className="hero-actions-cine">
+            <a className="btn-cine-primary" href="https://wa.me/27646993670?text=Hello%20I%20would%20like%20to%20request%20a%20cybersecurity%20quote" target="_blank" rel="noreferrer">Request a Quote</a>
           </div>
-
-          <div className="cards-grid">
-            <article className="info-card">
-              <h3>Security Assessment</h3>
-              <p>Vulnerability review and security report tailored to your systems, networks and business environment. Delivered remotely.</p>
-            </article>
-            <article className="info-card">
-              <h3>Business Protection</h3>
-              <p>Network security review, vulnerability scanning and system hardening for businesses that need stronger ongoing protection.</p>
-            </article>
-            <article className="info-card">
-              <h3>Enterprise Security</h3>
-              <p>Full security audit, consulting and long-term protection planning for complex or high-risk environments.</p>
-            </article>
-          </div>
-
-          <div className="section-head" style={{marginTop: "56px"}}>
-            <h2>What is included</h2>
-          </div>
-
-          <div className="cards-grid">
-            <article className="info-card">
-              <h3>Risk Reviews</h3>
-              <p>Identify weaknesses across systems, devices and workflows before they are exploited.</p>
-            </article>
-            <article className="info-card">
-              <h3>Network Security</h3>
-              <p>Review internal security posture, exposure areas and access control across your network.</p>
-            </article>
-            <article className="info-card">
-              <h3>Protection Planning</h3>
-              <p>Clear, actionable recommendations for strengthening your business resilience and reducing risk.</p>
-            </article>
-          </div>
-
-          <div style={{marginTop: "40px"}}>
-            <div className="cta-panel">
-              <div>
-                <div className="eyebrow">Pricing</div>
-                <h2>Every quote is tailored to your business.</h2>
-                <p>Contact us for a free consultation. We will assess your environment and provide a detailed proposal scoped to your specific needs and budget.</p>
-              </div>
-              <div className="cta-actions">
-                <a className="btn btn-primary" href="https://wa.me/27646993670?text=Hello%20I%20would%20like%20to%20request%20a%20cybersecurity%20quote" target="_blank" rel="noreferrer">Request a Quote</a>
-                <a className="btn btn-secondary" href="mailto:info@dt3bza-security.com?subject=Cybersecurity%20Quote%20Request">Email Us</a>
-              </div>
-            </div>
-          </div>
-
         </div>
-      </main>
+      </section>
+
+      <section className="section-cine">
+        <div className="container">
+          <div className="section-cine-header">
+            <div className="section-eyebrow">What We Do</div>
+            <h2 className="section-title-cine">Professional protection<br /><em>for real environments.</em></h2>
+          </div>
+          <div className="feature-list">
+            {[
+              {n:"01",name:"Security Assessment",desc:"Vulnerability review and security report tailored to your systems, networks and business environment."},
+              {n:"02",name:"Network Security Review",desc:"Internal security posture, exposure areas and access control across your network infrastructure."},
+              {n:"03",name:"Business Protection",desc:"Hardening, scanning and ongoing protection planning for businesses that need stronger security."},
+              {n:"04",name:"Enterprise Security Audit",desc:"Full audit, consulting and long-term protection planning for complex or high-risk environments."},
+              {n:"05",name:"Risk Reviews",desc:"Identify weaknesses across systems, devices and workflows before they can be exploited."},
+            ].map((f,i)=>(
+              <div className="feature-row" key={i}>
+                <div className="feature-num">{f.n}</div>
+                <div className="feature-name">{f.name}</div>
+                <div className="feature-desc">{f.desc}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="cta-cine" style={{paddingTop:80}}>
+        <div className="container">
+          <h2 className="cta-cine-title">Every quote is<br /><em>tailored to you.</em></h2>
+          <div style={{display:'flex',gap:16,flexWrap:'wrap'}}>
+            <a className="btn-cine-primary" href="https://wa.me/27646993670?text=Hello%20I%20would%20like%20to%20request%20a%20cybersecurity%20quote" target="_blank" rel="noreferrer">Request a Quote</a>
+            <a className="btn-cine-ghost" href="mailto:info@dt3bza-security.com?subject=Cybersecurity%20Quote%20Request">Email Us <span className="hero-arrow">→</span></a>
+          </div>
+        </div>
+      </section>
+
       <a className="floating-whatsapp" href="https://wa.me/27646993670" target="_blank" rel="noreferrer">WhatsApp Us</a>
       <Footer />
     </div>
