@@ -1,56 +1,157 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Header, Footer } from "./Layout.jsx";
+import QuoteWizard from "./QuoteWizard.jsx";
+
+const FAQ_ITEMS = [
+  {
+    q: "Why UNITI instead of just WhatsApp groups?",
+    a: "WhatsApp groups have no structure, no GPS, no incident tracking, and no escalation. UNITI maps every report, tracks response, dispatches to the nearest available unit, and keeps a permanent record. WhatsApp disappears. UNITI logs everything."
+  },
+  {
+    q: "When is UNITI launching?",
+    a: "Android launch is targeted for December 2026 on Google Play. iOS follows in Q1 2027. Security companies get early access 30 days before public launch with a free 3-month trial."
+  },
+  {
+    q: "I already use a private armed response. Why do I need UNITI?",
+    a: "Armed response protects your property. UNITI protects your whole neighbourhood — and gives your armed response company better intelligence to respond faster. It's the layer underneath, not a replacement."
+  },
+  {
+    q: "Can security companies use UNITI for their operations?",
+    a: "Yes — that's the B2B layer. Officers clock in, get dispatched, scan QR checkpoints and submit incident reports all through UNITI. Dispatchers see everything live. Register your company now to get early access."
+  },
+  {
+    q: "Is my location data private?",
+    a: "Your location is only shared when you activate a panic alert or opt into neighbourhood watch. It is never sold, never shared with third parties, and is governed by POPIA. Full privacy policy applies."
+  },
+  {
+    q: "What areas will UNITI cover at launch?",
+    a: "Western Cape first — Cape Town metro, surrounding suburbs and key N1/N2 corridors. We expand district by district based on community adoption. Your area gets coverage when enough residents join."
+  },
+  {
+    q: "How much will UNITI cost?",
+    a: "Free tier for basic community alerts. UNITI Plus at R89/month for full panic dispatch and priority response. UNITI Pro for security companies at R699/month per company. Pricing confirmed at launch."
+  },
+  {
+    q: "What if SAPS doesn't respond?",
+    a: "UNITI doesn't rely on SAPS. Panic alerts go to your registered emergency contacts AND the nearest UNITI-connected private security unit. Public services are notified in parallel, not as the primary response."
+  },
+];
+
+function FAQItem({ item }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div
+      style={{
+        borderTop: "1px solid rgba(255,255,255,0.08)",
+        cursor: "pointer",
+      }}
+      onClick={() => setOpen(!open)}
+    >
+      <div style={{
+        display: "flex", justifyContent: "space-between", alignItems: "flex-start",
+        padding: "28px 0", gap: 16,
+      }}>
+        <h3 style={{
+          fontSize: "clamp(1rem,2.5vw,1.2rem)", fontWeight: 700,
+          color: "#fff", lineHeight: 1.3, letterSpacing: "-0.01em",
+        }}>{item.q}</h3>
+        <span style={{
+          fontSize: "1.4rem", color: "rgba(255,255,255,0.4)",
+          flexShrink: 0, transition: "transform 0.2s",
+          transform: open ? "rotate(45deg)" : "none",
+          marginTop: 2,
+        }}>+</span>
+      </div>
+      {open && (
+        <div style={{
+          paddingBottom: 28, marginTop: -8,
+          fontSize: "0.95rem", color: "rgba(255,255,255,0.5)",
+          lineHeight: 1.75, maxWidth: 640,
+        }}>{item.a}</div>
+      )}
+    </div>
+  );
+}
 
 export default function DT3App() {
+  const [showWizard, setShowWizard] = useState(false);
+
   return (
     <div className="page-shell">
       <Header />
+      {showWizard && <QuoteWizard onClose={() => setShowWizard(false)} />}
 
       {/* HERO */}
       <section className="hero-cinematic">
         <div className="hero-bg" />
         <div className="hero-grid-lines" />
         <div className="container hero-content fade-up">
-          <div className="hero-eyebrow">Mobile Intelligence Platform</div>
+          <div className="hero-eyebrow">Coming December 2026 · Android First · Western Cape</div>
           <h1 className="hero-title-cinematic">
-            DT3 Tactical<br /><em>Intelligence App.</em>
+            Community safety<br /><em>intelligence. Finally.</em>
           </h1>
           <p className="hero-subtitle">
-            Built by DT3BZA Security for private security companies in the Western Cape.
-            Real-time crime intelligence, live dispatch, panic alerts and community watch.
+            UNITI is Africa's first real-time community safety platform — live crime map,
+            panic alerts, neighbourhood watch and private security dispatch in one app.
+            Join the waitlist now.
           </p>
           <div className="hero-actions-cine">
-            <a className="btn-cine-primary" href="https://wa.me/27646993670?text=Hello%20I%20want%20to%20register%20my%20company%20on%20DT3" target="_blank" rel="noreferrer">
-              Register Your Company
+            <a className="btn-cine-primary" href="https://wa.me/27646993670?text=Hello%20I%20want%20early%20access%20to%20UNITI" target="_blank" rel="noreferrer">
+              Join the Waitlist →
             </a>
-            <a className="btn-cine-ghost" href="https://wa.me/27646993670?text=Hello%20I%20want%20to%20download%20the%20DT3%20app" target="_blank" rel="noreferrer">
-              Download the App <span className="hero-arrow">→</span>
+            <a className="btn-cine-ghost" href="https://wa.me/27646993670?text=Hello%20I%20want%20to%20register%20my%20security%20company%20for%20UNITI" target="_blank" rel="noreferrer">
+              Register Your Company <span className="hero-arrow">→</span>
             </a>
           </div>
         </div>
       </section>
 
-      {/* LIVE SCREEN */}
+      {/* IN DEVELOPMENT BANNER */}
+      <div style={{background:"rgba(232,184,75,0.07)",borderTop:"1px solid rgba(232,184,75,0.2)",borderBottom:"1px solid rgba(232,184,75,0.2)",padding:"14px 0"}}>
+        <div className="container" style={{display:"flex",alignItems:"center",gap:12,flexWrap:"wrap"}}>
+          <span style={{fontFamily:"'Share Tech Mono',monospace",fontSize:"0.6rem",letterSpacing:"0.2em",color:"#e8b84b",border:"1px solid rgba(232,184,75,0.3)",padding:"3px 8px"}}>IN DEVELOPMENT</span>
+          <span style={{fontSize:"0.82rem",color:"rgba(255,255,255,0.4)"}}>UNITI is being built right now. App UI below is a concept preview — not a live system.</span>
+        </div>
+      </div>
+
+      {/* STATS */}
+      <section className="stats-cine">
+        <div className="container">
+          <div className="stats-cine-grid">
+            {[
+              {num:"Dec '26", label:"Android launch on Google Play. Western Cape first."},
+              {num:"R89", label:"Per month for UNITI Plus — full panic dispatch and priority response."},
+              {num:"3", label:"Partner security companies already registered for early access."},
+            ].map((s,i) => (
+              <div className="stat-cine" key={i} style={{paddingLeft:i>0?"40px":"0"}}>
+                <div className="stat-cine-num">{s.num}</div>
+                <div className="stat-cine-label">{s.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* APP PREVIEW */}
       <section className="app-section-cine">
         <div className="container app-grid-cine">
           <div>
-            <div className="section-eyebrow">Live Operations</div>
-            <h2 className="section-title-cine">Real-time across<br /><em>Western Cape.</em></h2>
-            <p className="section-body">Every incident pinned. Every officer tracked. Every dispatcher connected. All in one screen.</p>
-            <div style={{marginTop:36,display:'flex',gap:12,flexWrap:'wrap'}}>
-              <a className="btn-cine-primary" href="https://wa.me/27646993670?text=Hello%20I%20want%20to%20register%20my%20company%20on%20DT3" target="_blank" rel="noreferrer">Register Now</a>
-            </div>
+            <div className="section-eyebrow">Platform Preview</div>
+            <h2 className="section-title-cine">What UNITI will<br /><em>look like.</em></h2>
+            <p className="section-body">Every incident pinned. Officers tracked. Panic alerts dispatched in seconds. Community watch built in from day one.</p>
+            <p style={{fontSize:"0.75rem",color:"rgba(232,184,75,0.6)",marginTop:16,fontFamily:"'Share Tech Mono',monospace",letterSpacing:"0.1em"}}>↓ CONCEPT UI · LAUNCHING DEC 2026</p>
           </div>
-          <div className="app-screen-cine">
+          <div className="app-screen-cine" style={{opacity:0.72}}>
             <div className="app-topbar-cine">
               <div>
-                <div className="app-logo-cine">DT3</div>
+                <div className="app-logo-cine">UNITI</div>
                 <div className="app-sub-cine">WESTERN CAPE</div>
               </div>
-              <div className="live-pill"><span className="live-dot"/>LIVE</div>
+              <div style={{display:"inline-flex",alignItems:"center",gap:5,border:"1px solid rgba(232,184,75,0.3)",padding:"3px 10px",fontFamily:"'Share Tech Mono',monospace",fontSize:"0.55rem",color:"#e8b84b",letterSpacing:"0.1em"}}>PREVIEW</div>
             </div>
             <div className="app-stats-cine">
-              {[{v:"4",l:"ACTIVE",c:"#e85c4b"},{v:"2",l:"CRITICAL",c:"#9b4be8"},{v:"4",l:"ON DUTY",c:"#4be8a0"},{v:"1",l:"CLOSED",c:"#e8b84b"}].map((s,i)=>(
+              {[{v:"—",l:"ACTIVE",c:"rgba(255,255,255,0.2)"},{v:"—",l:"ALERTS",c:"rgba(255,255,255,0.2)"},{v:"—",l:"ON DUTY",c:"rgba(255,255,255,0.2)"},{v:"—",l:"CLOSED",c:"rgba(255,255,255,0.2)"}].map((s,i)=>(
                 <div className="app-stat-cine" key={i}>
                   <div className="app-stat-val-cine" style={{color:s.c}}>{s.v}</div>
                   <div className="app-stat-lbl-cine">{s.l}</div>
@@ -58,9 +159,9 @@ export default function DT3App() {
               ))}
             </div>
             {[
-              {id:"INC-2847",title:"Robbery",area:"Cape Town CBD",sev:"CRITICAL",sevColor:"#e85c4b",ac:"#e85c4b"},
-              {id:"INC-2846",title:"Hijacking",area:"N2 Highway",sev:"IN-PROGRESS",sevColor:"#e8b84b",ac:"#9b4be8"},
-              {id:"INC-2845",title:"Assault",area:"Bellville",sev:"HIGH",sevColor:"#e8b84b",ac:"#e8b84b"},
+              {id:"PREVIEW",title:"Live Incident Feed",area:"Cape Town — launching Dec 2026",sev:"COMING",sevColor:"#e8b84b",ac:"#e8b84b"},
+              {id:"PREVIEW",title:"Panic Alert Dispatch",area:"Western Cape coverage",sev:"COMING",sevColor:"rgba(255,255,255,0.2)",ac:"rgba(255,255,255,0.08)"},
+              {id:"PREVIEW",title:"Community Watch Feed",area:"Neighbourhood intelligence",sev:"COMING",sevColor:"rgba(255,255,255,0.2)",ac:"rgba(255,255,255,0.08)"},
             ].map((inc,i)=>(
               <div className="app-inc-cine" key={i}>
                 <div className="inc-accent-cine" style={{background:inc.ac}}/>
@@ -76,26 +177,72 @@ export default function DT3App() {
         </div>
       </section>
 
-      {/* FEATURES */}
-      <section className="section-cine" style={{borderTop:'1px solid rgba(255,255,255,0.08)'}}>
+      {/* PLANNED FEATURES */}
+      <section className="section-cine" style={{borderTop:"1px solid rgba(255,255,255,0.08)"}}>
         <div className="container">
           <div className="section-cine-header">
-            <div className="section-eyebrow">Core Features</div>
-            <h2 className="section-title-cine">Everything a security<br /><em>company needs.</em></h2>
+            <div className="section-eyebrow">What's Being Built</div>
+            <h2 className="section-title-cine">Phase 1 features<br /><em>in development.</em></h2>
           </div>
           <div className="feature-list">
             {[
-              {n:"01",name:"Live Incident Map",desc:"Real-time crime pins, heatmaps and unit tracking. Filter by type, severity and time."},
-              {n:"02",name:"Panic Button",desc:"Officers send GPS emergency alerts to all dispatchers in one tap. Nearest unit flagged instantly."},
-              {n:"03",name:"Smart Incident Reporting",desc:"Auto-tagged by type and severity. Evidence uploads. Saved directly to your company database."},
-              {n:"04",name:"Shift Management",desc:"Clock in/out. Dispatchers see all active shifts. Weekly reports auto-generated."},
-              {n:"05",name:"Guard Tour QR",desc:"Scan QR codes at checkpoints. Time-stamped verification logs that prove patrols happened."},
-              {n:"06",name:"Crime Intelligence",desc:"Pattern detection, zone risk scores, 24h charts and AI-powered hotspot predictions."},
-              {n:"07",name:"Communities",desc:"Neighbourhood watch feeds. Public users report incidents and share alerts with their area."},
-              {n:"08",name:"Role-Based Access",desc:"Public User, Security Officer, Dispatcher, Company Admin — each sees only what they need."},
+              {n:"01",name:"Live Crime Map",tag:"BUILDING",tagColor:"#4be8a0",desc:"Real-time incident pins and heatmaps across Western Cape. Report from your phone, see what's happening around you."},
+              {n:"02",name:"Panic Button",tag:"BUILDING",tagColor:"#4be8a0",desc:"One tap sends your GPS to emergency contacts and the nearest security unit. No call required."},
+              {n:"03",name:"Community Watch",tag:"BUILDING",tagColor:"#4be8a0",desc:"Neighbourhood feeds where residents report suspicious activity, share alerts and coordinate watch groups."},
+              {n:"04",name:"UNITI News",tag:"BUILDING",tagColor:"#4be8a0",desc:"Localised crime and safety news for your area. Curated, relevant, updated in real time."},
+              {n:"05",name:"Security Company Dashboard",tag:"PHASE 2",tagColor:"rgba(255,255,255,0.25)",desc:"Full B2B layer — officer dispatch, shift management, guard tours, incident reporting and crime intelligence."},
+              {n:"06",name:"AI Crime Intelligence",tag:"PHASE 2",tagColor:"rgba(255,255,255,0.25)",desc:"Pattern detection, predictive hotspots and automated threat scoring powered by community data."},
             ].map((f,i)=>(
               <div className="feature-row" key={i}>
                 <div className="feature-num">{f.n}</div>
+                <div style={{display:"flex",flexDirection:"column",gap:6}}>
+                  <div style={{display:"flex",alignItems:"center",gap:10,flexWrap:"wrap"}}>
+                    <span className="feature-name" style={{marginBottom:0}}>{f.name}</span>
+                    <span style={{fontFamily:"'Share Tech Mono',monospace",fontSize:"0.5rem",letterSpacing:"0.15em",padding:"3px 7px",border:`1px solid ${f.tagColor}`,color:f.tagColor}}>{f.tag}</span>
+                  </div>
+                </div>
+                <div className="feature-desc">{f.desc}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* TESTIMONIAL — placeholder honest version */}
+      <section style={{padding:"80px 0",background:"rgba(255,255,255,0.02)",borderTop:"1px solid rgba(255,255,255,0.08)"}}>
+        <div className="container">
+          <div style={{maxWidth:720}}>
+            <div style={{fontSize:"4rem",color:"rgba(192,200,216,0.2)",lineHeight:1,marginBottom:24,fontFamily:"Georgia,serif"}}>"</div>
+            <p style={{fontSize:"clamp(1.3rem,3vw,2rem)",fontWeight:700,color:"#fff",lineHeight:1.35,letterSpacing:"-0.02em",marginBottom:32}}>
+              WhatsApp groups are chaos when something actually happens. You need a system, not a group chat.
+            </p>
+            <div style={{display:"flex",alignItems:"center",gap:14}}>
+              <div style={{width:44,height:44,borderRadius:"50%",background:"rgba(192,200,216,0.1)",border:"1px solid rgba(192,200,216,0.2)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"0.8rem",fontWeight:700,color:"rgba(192,200,216,0.6)"}}>DT</div>
+              <div>
+                <div style={{fontSize:"0.9rem",fontWeight:700,color:"#fff"}}>Tebza — DT3BZA Security</div>
+                <div style={{fontSize:"0.78rem",color:"rgba(255,255,255,0.35)"}}>Founder · Western Cape</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ROADMAP */}
+      <section className="section-cine" style={{borderTop:"1px solid rgba(255,255,255,0.08)"}}>
+        <div className="container">
+          <div className="section-cine-header">
+            <div className="section-eyebrow">Roadmap</div>
+            <h2 className="section-title-cine">When it's<br /><em>coming.</em></h2>
+          </div>
+          <div className="feature-list">
+            {[
+              {n:"Q4 2026",name:"Android Launch",desc:"UNITI on Google Play. Community map, panic button, neighbourhood watch. Western Cape only."},
+              {n:"Q1 2027",name:"iOS Launch",desc:"iPhone version on App Store. Full feature parity. Same pricing."},
+              {n:"Q2 2027",name:"B2B Security Dashboard",desc:"Security companies get dispatch, officer tracking, incident management and guard tours."},
+              {n:"Q3 2027",name:"AI Intelligence Layer",desc:"Crime pattern detection, predictive hotspots and automated threat scoring."},
+            ].map((f,i)=>(
+              <div className="feature-row" key={i}>
+                <div className="feature-num" style={{color:"rgba(232,184,75,0.7)"}}>{f.n}</div>
                 <div className="feature-name">{f.name}</div>
                 <div className="feature-desc">{f.desc}</div>
               </div>
@@ -104,106 +251,67 @@ export default function DT3App() {
         </div>
       </section>
 
-      {/* REGISTERED COMPANIES */}
-      <section className="section-cine" style={{borderTop:'1px solid rgba(255,255,255,0.08)'}}>
+      {/* EARLY ACCESS PARTNERS */}
+      <section className="section-cine" style={{borderTop:"1px solid rgba(255,255,255,0.08)"}}>
         <div className="container">
           <div className="section-cine-header">
-            <div className="section-eyebrow">On the Platform</div>
-            <h2 className="section-title-cine">Companies running<br /><em>on DT3.</em></h2>
+            <div className="section-eyebrow">Early Access</div>
+            <h2 className="section-title-cine">Building with us<br /><em>from day one.</em></h2>
+            <p className="section-body">These companies are registered for early access and will be live on UNITI at launch.</p>
           </div>
-          <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:'1px',background:'rgba(255,255,255,0.06)',maxWidth:600}}>
+          <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:"1px",background:"rgba(255,255,255,0.06)",maxWidth:560}}>
             {[
-              {name:"DT3BZA Security",role:"Platform Owner"},
-              {name:"FHTE Solutions",role:"Technology Partner"},
-              {name:"FKN Solutions",role:"Field Operations"},
+              {name:"DT3BZA Security",role:"Platform Developer"},
+              {name:"FHTE Solutions",role:"Early Access Partner"},
+              {name:"FKN Solutions",role:"Early Access Partner"},
             ].map((c,i)=>(
-              <div key={i} style={{background:'#000',padding:'28px'}}>
-                <div style={{fontSize:'0.95rem',fontWeight:700,color:'#fff',marginBottom:6}}>{c.name}</div>
-                <div style={{fontSize:'0.78rem',color:'rgba(255,255,255,0.35)'}}>{c.role}</div>
+              <div key={i} style={{background:"#000",padding:"28px"}}>
+                <div style={{fontSize:"0.9rem",fontWeight:700,color:"#fff",marginBottom:6}}>{c.name}</div>
+                <div style={{fontSize:"0.75rem",color:"rgba(255,255,255,0.35)"}}>{c.role}</div>
               </div>
             ))}
           </div>
-          <div style={{marginTop:40}}>
-            <a className="btn-cine-primary" href="https://wa.me/27646993670?text=Hello%20I%20want%20to%20register%20my%20company%20on%20DT3" target="_blank" rel="noreferrer">Register Your Company</a>
+          <div style={{marginTop:36,display:"flex",gap:12,flexWrap:"wrap"}}>
+            <a className="btn-cine-primary" href="https://wa.me/27646993670?text=Hello%20I%20want%20to%20register%20my%20security%20company%20for%20UNITI%20early%20access" target="_blank" rel="noreferrer">Register Your Company</a>
+            <a className="btn-cine-ghost" href="https://wa.me/27646993670?text=Hello%20I%20want%20early%20access%20to%20UNITI" target="_blank" rel="noreferrer">Join Waitlist <span className="hero-arrow">→</span></a>
           </div>
         </div>
       </section>
 
-      <a className="floating-whatsapp" href="https://wa.me/27646993670" target="_blank" rel="noreferrer">WhatsApp Us</a>
-      <Footer />
-    </div>
-  );
-}            </div>
-            <div className="cards-grid">
-              {[
-                {icon:"🗺️",title:"Live Incident Map",desc:"Real-time crime pins, heatmaps and unit tracking across Western Cape. Filter by incident type, severity and time."},
-                {icon:"🚨",title:"Panic Button",desc:"Officers send GPS emergency alerts to all dispatchers in one tap. Nearest unit automatically flagged."},
-                {icon:"📋",title:"Smart Incident Reporting",desc:"Auto-tagged by type and severity. Duplicate detection. Evidence uploads. Saved directly to your company database."},
-                {icon:"⏱",title:"Shift Management",desc:"Officers clock in and out. Dispatchers see all active shifts. Weekly summary reports generated automatically."},
-                {icon:"✓", title:"Guard Tour QR",desc:"Officers scan QR codes at checkpoints. Time-stamped verification logs prove patrols happened."},
-                {icon:"🏘️",title:"Communities",desc:"Neighbourhood watch intelligence feeds. Public users report incidents and share alerts with their area."},
-                {icon:"📊",title:"Crime Intelligence",desc:"Pattern detection, zone risk scores, 24h frequency charts and AI-powered hotspot predictions."},
-                {icon:"📷",title:"CCTV Integration",desc:"Connect your camera systems directly to DT3. Live feeds, motion alerts and clip retrieval. Coming soon."},
-                {icon:"🔐",title:"Role-Based Access",desc:"Public User, Security Officer, Dispatcher and Company Admin — each role sees only what they need."},
-              ].map((f,i) => (
-                <article className="info-card" key={i}>
-                  <div style={{fontSize:'1.8rem',marginBottom:10}}>{f.icon}</div>
-                  <h3>{f.title}</h3>
-                  <p>{f.desc}</p>
-                </article>
-              ))}
+      {/* FAQ */}
+      <section className="section-cine" style={{borderTop:"1px solid rgba(255,255,255,0.08)"}}>
+        <div className="container">
+          <div className="section-cine-header">
+            <div className="section-eyebrow">06 / FAQ</div>
+            <h2 className="section-title-cine">Questions people<br /><em>actually ask.</em></h2>
+          </div>
+          <div style={{maxWidth:760}}>
+            {FAQ_ITEMS.map((item, i) => (
+              <FAQItem key={i} item={item} />
+            ))}
+            <div style={{borderTop:"1px solid rgba(255,255,255,0.08)",paddingTop:32,marginTop:8}}>
+              <p style={{fontSize:"0.88rem",color:"rgba(255,255,255,0.35)",marginBottom:16}}>Still have questions?</p>
+              <a className="btn-cine-ghost" href="https://wa.me/27646993670?text=Hello%20I%20have%20a%20question%20about%20UNITI" target="_blank" rel="noreferrer">Ask us on WhatsApp <span className="hero-arrow">→</span></a>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section className="section section-alt">
-          <div className="container">
-            <div className="section-head">
-              <div className="eyebrow">Company Registration</div>
-              <h2>Register your security company on DT3</h2>
-              <p>Companies currently registered on DT3:</p>
-            </div>
-            <div className="cards-grid" style={{gridTemplateColumns:'repeat(3,1fr)',maxWidth:600}}>
-              {[
-                {name:"DT3BZA Security",role:"Platform Owner",color:"#c0c8d8"},
-                {name:"FHTE Solutions", role:"Technology Partner",color:"#4b9fe8"},
-                {name:"FKN Solutions",  role:"Field Operations",color:"#e8b84b"},
-              ].map((c,i) => (
-                <div key={i} className="info-card" style={{textAlign:'center',borderColor:c.color+'44'}}>
-                  <div style={{width:44,height:44,borderRadius:8,background:c.color+'22',border:`1px solid ${c.color}`,display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 10px',fontFamily:"'Rajdhani',sans-serif",fontWeight:900,color:c.color,fontSize:'1rem'}}>
-                    {c.name.substring(0,2)}
-                  </div>
-                  <h3 style={{fontSize:'0.85rem',color:c.color}}>{c.name}</h3>
-                  <p style={{fontSize:'0.78rem'}}>{c.role}</p>
-                </div>
-              ))}
-            </div>
-            <div style={{marginTop:28}}>
-              <a className="btn btn-primary" href="https://wa.me/27646993670?text=Hello%20I%20want%20to%20register%20my%20company%20on%20DT3" target="_blank" rel="noreferrer">
-                Register Your Company
-              </a>
-            </div>
+      {/* FINAL CTA */}
+      <section className="cta-cine">
+        <div className="container">
+          <h2 className="cta-cine-title">Be first in<br /><em>Western Cape.</em></h2>
+          <p style={{fontSize:"1rem",color:"rgba(255,255,255,0.45)",marginBottom:36,maxWidth:480,lineHeight:1.7}}>
+            Join the waitlist. We notify you the moment UNITI hits Google Play.
+            Security companies get 30-day early access and a free 3-month trial.
+          </p>
+          <div style={{display:"flex",gap:16,flexWrap:"wrap"}}>
+            <a className="btn-cine-primary" href="https://wa.me/27646993670?text=Hello%20I%20want%20early%20access%20to%20UNITI" target="_blank" rel="noreferrer">Join Waitlist →</a>
+            <a className="btn-cine-ghost" href="https://wa.me/27646993670" target="_blank" rel="noreferrer">WhatsApp Us <span className="hero-arrow">→</span></a>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section className="section">
-          <div className="container">
-            <div className="cta-panel">
-              <div>
-                <div className="eyebrow">Get Started</div>
-                <h2>Ready to bring DT3 to your security operations?</h2>
-                <p>Contact us on WhatsApp to register your company and get your team set up on the platform.</p>
-              </div>
-              <div className="cta-actions">
-                <a className="btn btn-primary" href="https://wa.me/27646993670?text=Hello%20I%20want%20to%20get%20DT3%20for%20my%20security%20company" target="_blank" rel="noreferrer">
-                  WhatsApp Us
-                </a>
-                <NavLink to="/contact" className="btn btn-secondary">Contact Page</NavLink>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
       <a className="floating-whatsapp" href="https://wa.me/27646993670" target="_blank" rel="noreferrer">WhatsApp Us</a>
       <Footer />
     </div>
