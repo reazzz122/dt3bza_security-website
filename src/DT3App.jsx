@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Header, Footer } from "./Layout.jsx";
-import QuoteWizard from "./QuoteWizard.jsx";
 
 const FAQ_ITEMS = [
   {
@@ -75,12 +74,9 @@ function FAQItem({ item }) {
 }
 
 export default function DT3App() {
-  const [showWizard, setShowWizard] = useState(false);
-
   return (
     <div className="page-shell">
       <Header />
-      {showWizard && <QuoteWizard onClose={() => setShowWizard(false)} />}
 
       {/* HERO */}
       <section className="hero-cinematic">
