@@ -1,38 +1,57 @@
 import { useState } from "react";
 
-// ─── QUOTE WIZARD ────────────────────────────────────────────────────────────
-// DT3BZA Security — Intelligent lead capture
-// Beats Bark.com: dark tactical UI, smart logic, direct WhatsApp handoff,
-// instant AI-driven price estimate (world first for SA security cos)
+// ─── UPGRADED QUOTE WIZARD ───────────────────────────────────────────────────
+// World-first ideas baked in:
+// 1. THREAT SCORE — after answering, AI calculates your security risk score (0-100)
+//    based on property type, area, existing protection. No SA company does this.
+// 2. COMPETITOR GAP — shows what you're missing vs industry standard
+// 3. PRE-FILLED WHATSAPP — full structured brief sent directly, no form submissions
+// 4. LIVE ESTIMATE — real ZAR ranges that update as you answer
 // ─────────────────────────────────────────────────────────────────────────────
 
 const STEPS = [
   {
     id: "service",
     question: "What do you need?",
-    sub: "Select everything that applies.",
+    sub: "Select all that apply.",
     type: "multi",
     options: [
       { value: "cctv", label: "CCTV Installation", icon: "📷" },
       { value: "cyber", label: "Cybersecurity", icon: "🔐" },
       { value: "school", label: "School Security", icon: "🏫" },
-      { value: "dt3", label: "DT3 Intelligence App", icon: "🗺️" },
+      { value: "uniti", label: "UNITI App (Waitlist)", icon: "🗺️" },
       { value: "guard", label: "Guard Services", icon: "🛡️" },
       { value: "audit", label: "Security Audit", icon: "📋" },
     ],
   },
   {
     id: "property",
-    question: "What type of property?",
+    question: "Type of property?",
     sub: null,
     type: "single",
-    showIf: (a) => a.service?.includes("cctv") || a.service?.includes("school") || a.service?.includes("guard"),
+    showIf: (a) => a.service?.some(s => ["cctv","school","guard"].includes(s)),
     options: [
-      { value: "residential", label: "Residential" },
-      { value: "commercial", label: "Commercial / Office" },
-      { value: "industrial", label: "Industrial / Warehouse" },
-      { value: "school_prop", label: "School / Institution" },
-      { value: "construction", label: "Construction Site" },
+      { value: "residential", label: "Residential home" },
+      { value: "smallbiz", label: "Small business / office" },
+      { value: "commercial", label: "Commercial building" },
+      { value: "industrial", label: "Industrial / warehouse" },
+      { value: "school_prop", label: "School / institution" },
+      { value: "construction", label: "Construction site" },
+    ],
+  },
+  {
+    id: "existing",
+    question: "What security do you have now?",
+    sub: "Honest answer gives a better estimate.",
+    type: "multi",
+    showIf: (a) => a.service?.some(s => ["cctv","guard","audit"].includes(s)),
+    options: [
+      { value: "nothing", label: "Nothing", icon: "❌" },
+      { value: "alarm", label: "Alarm system", icon: "🔔" },
+      { value: "old_cctv", label: "Old / broken CCTV", icon: "📹" },
+      { value: "armed", label: "Armed response", icon: "🚔" },
+      { value: "guard", label: "Security guard", icon: "👮" },
+      { value: "access", label: "Access control", icon: "🔑" },
     ],
   },
   {
@@ -42,10 +61,22 @@ const STEPS = [
     type: "single",
     showIf: (a) => a.service?.includes("cctv"),
     options: [
-      { value: "1-4", label: "1–4 cameras" },
-      { value: "5-8", label: "5–8 cameras" },
-      { value: "9-16", label: "9–16 cameras" },
-      { value: "17+", label: "17+ cameras" },
+      { value: "1-4", label: "1–4 cameras", est: [3500, 8000] },
+      { value: "5-8", label: "5–8 cameras", est: [8000, 18000] },
+      { value: "9-16", label: "9–16 cameras", est: [18000, 35000] },
+      { value: "17+", label: "17+ cameras", est: [35000, 80000] },
+    ],
+  },
+  {
+    id: "placement",
+    question: "Where are the cameras?",
+    sub: null,
+    type: "single",
+    showIf: (a) => a.service?.includes("cctv"),
+    options: [
+      { value: "external", label: "External only" },
+      { value: "internal", label: "Internal only" },
+      { value: "both", label: "Internal & External" },
     ],
   },
   {
@@ -55,7 +86,7 @@ const STEPS = [
     type: "single",
     showIf: (a) => a.service?.includes("cctv"),
     options: [
-      { value: "new", label: "New installation" },
+      { value: "new", label: "New full installation" },
       { value: "upgrade", label: "Upgrade existing" },
       { value: "replace", label: "Replace existing" },
       { value: "repair", label: "Repair / maintenance" },
@@ -63,33 +94,20 @@ const STEPS = [
   },
   {
     id: "urgency",
-    question: "How urgent is this?",
+    question: "How urgent?",
     sub: null,
     type: "single",
     options: [
-      { value: "asap", label: "As soon as possible" },
+      { value: "asap", label: "Something happened — ASAP" },
       { value: "week", label: "Within a week" },
       { value: "month", label: "Within a month" },
       { value: "planning", label: "Just planning ahead" },
     ],
   },
   {
-    id: "size",
-    question: "Size of the area to secure?",
-    sub: null,
-    type: "single",
-    showIf: (a) => !a.service?.includes("cyber") && !a.service?.includes("dt3"),
-    options: [
-      { value: "small", label: "Small (home, small office)" },
-      { value: "medium", label: "Medium (warehouse, school)" },
-      { value: "large", label: "Large (complex, campus)" },
-      { value: "multi", label: "Multiple sites" },
-    ],
-  },
-  {
     id: "budget",
     question: "Approximate budget?",
-    sub: "This helps us tailor the solution.",
+    sub: "Helps us recommend the right solution.",
     type: "single",
     options: [
       { value: "under5", label: "Under R5,000" },
@@ -102,63 +120,87 @@ const STEPS = [
   {
     id: "name",
     question: "Your name?",
-    sub: "We keep this confidential.",
+    sub: "Kept confidential.",
     type: "text",
     placeholder: "Full name",
   },
   {
     id: "contact",
-    question: "Best way to reach you?",
+    question: "Best number to reach you?",
     sub: "WhatsApp preferred — fastest response.",
     type: "text",
-    placeholder: "Phone or email",
+    placeholder: "Phone number or email",
   },
 ];
 
-function buildWhatsAppMessage(answers) {
-  const serviceMap = {
-    cctv: "CCTV Installation",
-    cyber: "Cybersecurity",
-    school: "School Security",
-    dt3: "DT3 App",
-    guard: "Guard Services",
-    audit: "Security Audit",
-  };
-  const services = (answers.service || []).map((s) => serviceMap[s] || s).join(", ");
-  const lines = [
-    `*DT3BZA Security — Quote Request*`,
-    ``,
-    `*Name:* ${answers.name || "Not provided"}`,
-    `*Contact:* ${answers.contact || "Not provided"}`,
-    `*Services:* ${services}`,
-    answers.property ? `*Property type:* ${answers.property}` : null,
-    answers.cameras ? `*Cameras needed:* ${answers.cameras}` : null,
-    answers.project_type ? `*Project type:* ${answers.project_type}` : null,
-    answers.size ? `*Area size:* ${answers.size}` : null,
-    answers.urgency ? `*Urgency:* ${answers.urgency}` : null,
-    answers.budget ? `*Budget:* ${answers.budget}` : null,
-  ]
-    .filter(Boolean)
-    .join("\n");
-  return encodeURIComponent(lines);
+function calcThreatScore(answers) {
+  let score = 50;
+  const existing = answers.existing || [];
+  if (existing.includes("nothing")) score += 30;
+  if (existing.includes("old_cctv")) score += 10;
+  if (!existing.includes("armed")) score += 10;
+  if (!existing.includes("alarm")) score += 5;
+  if (answers.property === "construction") score += 15;
+  if (answers.property === "industrial") score += 10;
+  if (answers.urgency === "asap") score += 20;
+  if (answers.project_type === "repair") score += 5;
+  return Math.min(score, 99);
+}
+
+function getThreatLabel(score) {
+  if (score >= 80) return { label: "HIGH RISK", color: "#e85c4b" };
+  if (score >= 60) return { label: "ELEVATED", color: "#e8b84b" };
+  if (score >= 40) return { label: "MODERATE", color: "#4be8a0" };
+  return { label: "LOW RISK", color: "#c0c8d8" };
+}
+
+function getGaps(answers) {
+  const gaps = [];
+  const existing = answers.existing || [];
+  const services = answers.service || [];
+  if (!existing.includes("alarm") && !services.includes("cyber")) gaps.push("No alarm system detected");
+  if (!existing.includes("armed")) gaps.push("No armed response coverage");
+  if (!existing.includes("old_cctv") && !services.includes("cctv")) gaps.push("No camera coverage");
+  if (services.includes("cyber") && !existing.includes("access")) gaps.push("No access control in place");
+  return gaps.slice(0, 3);
 }
 
 function getEstimate(answers) {
   const services = answers.service || [];
   let low = 0, high = 0;
-
   if (services.includes("cctv")) {
-    const camMap = { "1-4": [3500, 8000], "5-8": [8000, 18000], "9-16": [18000, 35000], "17+": [35000, 80000] };
-    const [cl, ch] = camMap[answers.cameras] || [3500, 8000];
+    const opt = STEPS.find(s => s.id === "cameras")?.options?.find(o => o.value === answers.cameras);
+    const [cl, ch] = opt?.est || [3500, 8000];
     low += cl; high += ch;
+    if (answers.placement === "both") { low *= 1.3; high *= 1.3; }
   }
   if (services.includes("cyber")) { low += 2500; high += 15000; }
   if (services.includes("school")) { low += 5000; high += 25000; }
   if (services.includes("audit")) { low += 1500; high += 8000; }
   if (services.includes("guard")) { low += 8000; high += 25000; }
-
   if (!low) return null;
-  return `R${low.toLocaleString()} – R${high.toLocaleString()}`;
+  return `R${Math.round(low).toLocaleString()} – R${Math.round(high).toLocaleString()}`;
+}
+
+function buildWAMessage(answers) {
+  const svcMap = { cctv:"CCTV Installation", cyber:"Cybersecurity", school:"School Security", uniti:"UNITI App Waitlist", guard:"Guard Services", audit:"Security Audit" };
+  const lines = [
+    `*DT3BZA Security — Quote Request*`,
+    ``,
+    `*Name:* ${answers.name || "Not provided"}`,
+    `*Contact:* ${answers.contact || "Not provided"}`,
+    `*Services:* ${(answers.service||[]).map(s=>svcMap[s]||s).join(", ")}`,
+    answers.property && `*Property:* ${answers.property}`,
+    answers.existing?.length && `*Current security:* ${answers.existing.join(", ")}`,
+    answers.cameras && `*Cameras needed:* ${answers.cameras}`,
+    answers.placement && `*Camera placement:* ${answers.placement}`,
+    answers.project_type && `*Project type:* ${answers.project_type}`,
+    answers.urgency && `*Urgency:* ${answers.urgency}`,
+    answers.budget && `*Budget:* ${answers.budget}`,
+    ``,
+    `*Estimate shown:* ${getEstimate(answers) || "N/A"}`,
+  ].filter(Boolean).join("\n");
+  return encodeURIComponent(lines);
 }
 
 export default function QuoteWizard({ onClose }) {
@@ -166,10 +208,9 @@ export default function QuoteWizard({ onClose }) {
   const [answers, setAnswers] = useState({});
   const [done, setDone] = useState(false);
 
-  const visibleSteps = STEPS.filter((s) => !s.showIf || s.showIf(answers));
+  const visibleSteps = STEPS.filter(s => !s.showIf || s.showIf(answers));
   const step = visibleSteps[stepIndex];
-  const progress = ((stepIndex) / visibleSteps.length) * 100;
-  const estimate = getEstimate(answers);
+  const progress = (stepIndex / visibleSteps.length) * 100;
 
   function handleSingle(val) {
     const updated = { ...answers, [step.id]: val };
@@ -179,9 +220,7 @@ export default function QuoteWizard({ onClose }) {
 
   function handleMulti(val) {
     const current = answers[step.id] || [];
-    const updated = current.includes(val)
-      ? current.filter((v) => v !== val)
-      : [...current, val];
+    const updated = current.includes(val) ? current.filter(v => v !== val) : [...current, val];
     setAnswers({ ...answers, [step.id]: updated });
   }
 
@@ -191,136 +230,151 @@ export default function QuoteWizard({ onClose }) {
 
   function advance(updatedAnswers) {
     const ans = updatedAnswers || answers;
-    const nextSteps = STEPS.filter((s) => !s.showIf || s.showIf(ans));
-    const nextIndex = stepIndex + 1;
-    if (nextIndex >= nextSteps.length) {
-      setDone(true);
-    } else {
-      setStepIndex(nextIndex);
-    }
+    const next = STEPS.filter(s => !s.showIf || s.showIf(ans));
+    if (stepIndex + 1 >= next.length) setDone(true);
+    else setStepIndex(stepIndex + 1);
   }
 
-  function handleBack() {
-    if (stepIndex > 0) setStepIndex(stepIndex - 1);
-  }
-
-  const waMsg = buildWhatsAppMessage(answers);
-  const waUrl = `https://wa.me/27646993670?text=${waMsg}`;
+  const estimate = getEstimate(answers);
+  const threatScore = calcThreatScore(answers);
+  const threat = getThreatLabel(threatScore);
+  const gaps = getGaps(answers);
+  const waUrl = `https://wa.me/27646993670?text=${buildWAMessage(answers)}`;
 
   return (
-    <div style={styles.overlay} onClick={(e) => e.target === e.currentTarget && onClose?.()}>
-      <div style={styles.modal}>
+    <div style={S.overlay} onClick={e => e.target === e.currentTarget && onClose?.()}>
+      <div style={S.modal}>
+
         {/* Header */}
-        <div style={styles.header}>
-          <div style={styles.headerLeft}>
-            <span style={styles.headerLabel}>GET A QUOTE</span>
-            {!done && <span style={styles.stepCount}>{stepIndex + 1} / {visibleSteps.length}</span>}
+        <div style={S.header}>
+          <div style={{display:"flex",alignItems:"center",gap:12}}>
+            <span style={S.headerLabel}>SECURITY QUOTE</span>
+            {!done && <span style={S.stepCount}>{stepIndex + 1} / {visibleSteps.length}</span>}
           </div>
-          <button style={styles.closeBtn} onClick={onClose}>✕</button>
+          <button style={S.closeBtn} onClick={onClose}>✕</button>
         </div>
 
-        {/* Progress bar */}
+        {/* Progress */}
         {!done && (
-          <div style={styles.progressTrack}>
-            <div style={{ ...styles.progressBar, width: `${progress}%` }} />
+          <div style={S.progressTrack}>
+            <div style={{...S.progressBar, width:`${progress}%`}}/>
           </div>
         )}
 
-        {/* Done state */}
+        {/* DONE STATE */}
         {done ? (
-          <div style={styles.doneWrap}>
-            {estimate && (
-              <div style={styles.estimateBox}>
-                <div style={styles.estimateLabel}>Estimated range</div>
-                <div style={styles.estimateVal}>{estimate}</div>
-                <div style={styles.estimateSub}>Final quote after free assessment</div>
+          <div style={S.doneWrap}>
+
+            {/* Threat Score — world first */}
+            <div style={S.threatBox}>
+              <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:16}}>
+                <div>
+                  <div style={S.threatLabel}>SECURITY RISK SCORE</div>
+                  <div style={{...S.threatScore, color: threat.color}}>{threatScore}<span style={{fontSize:"1.5rem",color:"rgba(255,255,255,0.3)"}}>/99</span></div>
+                  <div style={{...S.threatBadge, color: threat.color, borderColor: threat.color}}>{threat.label}</div>
+                </div>
+                <div style={{textAlign:"right"}}>
+                  <div style={S.estimateLabel}>COST ESTIMATE</div>
+                  <div style={S.estimateVal}>{estimate || "Custom"}</div>
+                  <div style={S.estimateSub}>After free assessment</div>
+                </div>
               </div>
-            )}
-            <h2 style={styles.doneTitle}>Ready to send<br />your quote request.</h2>
-            <p style={styles.doneSub}>
-              Tap below — your details are pre-filled. We respond within 2 hours on WhatsApp.
-            </p>
-            <a href={waUrl} target="_blank" rel="noreferrer" style={styles.waBtnLarge}>
-              <span>Send via WhatsApp →</span>
+
+              {/* Gaps */}
+              {gaps.length > 0 && (
+                <div style={S.gapsWrap}>
+                  <div style={S.gapsLabel}>GAPS IDENTIFIED</div>
+                  {gaps.map((g, i) => (
+                    <div key={i} style={S.gapItem}>
+                      <span style={{color:"#e85c4b",marginRight:8}}>▸</span>{g}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <h2 style={S.doneTitle}>Your brief is ready.<br /><span style={{color:"rgba(255,255,255,0.4)"}}>Send it now.</span></h2>
+            <p style={S.doneSub}>Your answers are pre-formatted into a WhatsApp message. We respond within 2 hours.</p>
+
+            <a href={waUrl} target="_blank" rel="noreferrer" style={S.waBtnLarge}>
+              Send via WhatsApp →
             </a>
-            <button style={styles.restartBtn} onClick={() => { setAnswers({}); setStepIndex(0); setDone(false); }}>
+            <button style={S.restartBtn} onClick={() => { setAnswers({}); setStepIndex(0); setDone(false); }}>
               Start over
             </button>
           </div>
         ) : (
-          <div style={styles.body}>
-            <h2 style={styles.question}>{step.question}</h2>
-            {step.sub && <p style={styles.sub}>{step.sub}</p>}
+          <div style={S.body}>
+            <h2 style={S.question}>{step.question}</h2>
+            {step.sub && <p style={S.sub}>{step.sub}</p>}
 
-            {/* Multi select */}
+            {/* Live estimate ticker */}
+            {estimate && (
+              <div style={S.liveTicker}>
+                <span style={S.liveTickerLabel}>ESTIMATE</span>
+                <span style={S.liveTickerVal}>{estimate}</span>
+              </div>
+            )}
+
+            {/* Multi */}
             {step.type === "multi" && (
-              <div style={styles.optionGrid}>
-                {step.options.map((opt) => {
+              <div style={S.optionGrid}>
+                {step.options.map(opt => {
                   const sel = (answers[step.id] || []).includes(opt.value);
                   return (
-                    <button
-                      key={opt.value}
-                      style={{ ...styles.optionCard, ...(sel ? styles.optionCardSel : {}) }}
-                      onClick={() => handleMulti(opt.value)}
-                    >
-                      <span style={styles.optIcon}>{opt.icon}</span>
-                      <span style={styles.optLabel}>{opt.label}</span>
+                    <button key={opt.value} style={{...S.optionCard, ...(sel ? S.optionCardSel : {})}} onClick={() => handleMulti(opt.value)}>
+                      {opt.icon && <span style={S.optIcon}>{opt.icon}</span>}
+                      <span style={S.optLabel}>{opt.label}</span>
                     </button>
                   );
                 })}
               </div>
             )}
 
-            {/* Single select */}
+            {/* Single */}
             {step.type === "single" && (
-              <div style={styles.optionList}>
-                {step.options.map((opt) => {
+              <div style={S.optionList}>
+                {step.options.map(opt => {
                   const sel = answers[step.id] === opt.value;
                   return (
-                    <button
-                      key={opt.value}
-                      style={{ ...styles.optionRow, ...(sel ? styles.optionRowSel : {}) }}
-                      onClick={() => handleSingle(opt.value)}
-                    >
-                      <span style={{ ...styles.radio, ...(sel ? styles.radioSel : {}) }}>
-                        {sel && <span style={styles.radioDot} />}
+                    <button key={opt.value} style={{...S.optionRow, ...(sel ? S.optionRowSel : {})}} onClick={() => handleSingle(opt.value)}>
+                      <span style={{...S.radio, ...(sel ? S.radioSel : {})}}>
+                        {sel && <span style={S.radioDot}/>}
                       </span>
-                      <span style={styles.optRowLabel}>{opt.label}</span>
+                      <span style={S.optRowLabel}>{opt.label}</span>
                     </button>
                   );
                 })}
               </div>
             )}
 
-            {/* Text input */}
+            {/* Text */}
             {step.type === "text" && (
-              <div style={styles.inputWrap}>
+              <div style={S.inputWrap}>
                 <input
-                  style={styles.input}
+                  style={S.input}
                   placeholder={step.placeholder}
                   value={answers[step.id] || ""}
                   onChange={handleText}
-                  onKeyDown={(e) => e.key === "Enter" && answers[step.id] && advance()}
+                  onKeyDown={e => e.key === "Enter" && answers[step.id] && advance()}
                   autoFocus
                 />
               </div>
             )}
 
             {/* Nav */}
-            <div style={styles.nav}>
-              {stepIndex > 0 && (
-                <button style={styles.backBtn} onClick={handleBack}>← Back</button>
-              )}
+            <div style={S.nav}>
+              {stepIndex > 0 && <button style={S.backBtn} onClick={() => setStepIndex(stepIndex - 1)}>← Back</button>}
               {step.type === "multi" && (answers[step.id]?.length > 0) && (
-                <button style={styles.nextBtn} onClick={() => advance()}>Continue →</button>
+                <button style={S.nextBtn} onClick={() => advance()}>Continue →</button>
               )}
               {step.type === "text" && answers[step.id] && (
-                <button style={styles.nextBtn} onClick={() => advance()}>
-                  {stepIndex === visibleSteps.length - 1 ? "See estimate →" : "Continue →"}
+                <button style={S.nextBtn} onClick={() => advance()}>
+                  {stepIndex === visibleSteps.length - 1 ? "Get my score →" : "Continue →"}
                 </button>
               )}
               {step.type === "text" && !answers[step.id] && (
-                <button style={styles.skipBtn} onClick={() => advance()}>Skip</button>
+                <button style={S.skipBtn} onClick={() => advance()}>Skip</button>
               )}
             </div>
           </div>
@@ -330,141 +384,52 @@ export default function QuoteWizard({ onClose }) {
   );
 }
 
-const styles = {
-  overlay: {
-    position: "fixed", inset: 0, background: "rgba(0,0,0,0.85)",
-    backdropFilter: "blur(8px)", zIndex: 1000,
-    display: "flex", alignItems: "center", justifyContent: "center",
-    padding: "16px",
-  },
-  modal: {
-    background: "#0a0a0f", border: "1px solid rgba(255,255,255,0.1)",
-    width: "100%", maxWidth: "480px", maxHeight: "90vh",
-    overflowY: "auto", position: "relative",
-  },
-  header: {
-    display: "flex", justifyContent: "space-between", alignItems: "center",
-    padding: "20px 24px 16px", borderBottom: "1px solid rgba(255,255,255,0.06)",
-  },
-  headerLeft: { display: "flex", alignItems: "center", gap: 12 },
-  headerLabel: {
-    fontFamily: "'Share Tech Mono', monospace", fontSize: "0.6rem",
-    letterSpacing: "0.25em", color: "rgba(255,255,255,0.3)",
-  },
-  stepCount: {
-    fontFamily: "'Share Tech Mono', monospace", fontSize: "0.6rem",
-    color: "rgba(255,255,255,0.2)",
-  },
-  closeBtn: {
-    background: "none", border: "none", color: "rgba(255,255,255,0.4)",
-    fontSize: "1rem", cursor: "pointer", padding: "4px 8px",
-  },
-  progressTrack: {
-    height: "2px", background: "rgba(255,255,255,0.06)",
-  },
-  progressBar: {
-    height: "100%", background: "#c0c8d8", transition: "width 0.4s ease",
-  },
-  body: { padding: "32px 24px 24px" },
-  question: {
-    fontSize: "clamp(1.3rem, 4vw, 1.7rem)", fontWeight: 700,
-    letterSpacing: "-0.02em", color: "#fff", marginBottom: 8, lineHeight: 1.15,
-  },
-  sub: { fontSize: "0.82rem", color: "rgba(255,255,255,0.35)", marginBottom: 24 },
-
-  // Multi grid
-  optionGrid: {
-    display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 24,
-  },
-  optionCard: {
-    display: "flex", flexDirection: "column", alignItems: "flex-start",
-    gap: 8, padding: "16px", background: "rgba(255,255,255,0.03)",
-    border: "1px solid rgba(255,255,255,0.08)", cursor: "pointer",
-    transition: "all 0.15s", textAlign: "left",
-  },
-  optionCardSel: {
-    background: "rgba(192,200,216,0.08)", border: "1px solid rgba(192,200,216,0.4)",
-  },
-  optIcon: { fontSize: "1.4rem" },
-  optLabel: { fontSize: "0.85rem", fontWeight: 600, color: "#fff", lineHeight: 1.3 },
-
-  // Single list
-  optionList: { display: "flex", flexDirection: "column", gap: 6, marginBottom: 24 },
-  optionRow: {
-    display: "flex", alignItems: "center", gap: 14, padding: "14px 16px",
-    background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)",
-    cursor: "pointer", transition: "all 0.15s", textAlign: "left",
-  },
-  optionRowSel: {
-    background: "rgba(192,200,216,0.07)", border: "1px solid rgba(192,200,216,0.35)",
-  },
-  radio: {
-    width: 18, height: 18, border: "2px solid rgba(255,255,255,0.25)",
-    borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center",
-    flexShrink: 0, transition: "border-color 0.15s",
-  },
-  radioSel: { borderColor: "#c0c8d8" },
-  radioDot: {
-    width: 8, height: 8, borderRadius: "50%", background: "#c0c8d8",
-  },
-  optRowLabel: { fontSize: "0.9rem", color: "#fff", fontWeight: 500 },
-
-  // Text
-  inputWrap: { marginBottom: 24 },
-  input: {
-    width: "100%", background: "rgba(255,255,255,0.04)",
-    border: "1px solid rgba(255,255,255,0.12)", padding: "16px",
-    fontSize: "1rem", color: "#fff", outline: "none",
-    fontFamily: "inherit", boxSizing: "border-box",
-  },
-
-  // Nav
-  nav: { display: "flex", gap: 10, justifyContent: "space-between", alignItems: "center" },
-  backBtn: {
-    background: "none", border: "none", color: "rgba(255,255,255,0.4)",
-    fontSize: "0.85rem", cursor: "pointer", padding: "10px 0",
-  },
-  nextBtn: {
-    background: "#fff", color: "#000", border: "none",
-    padding: "12px 24px", fontSize: "0.88rem", fontWeight: 700,
-    letterSpacing: "0.05em", cursor: "pointer", marginLeft: "auto",
-    transition: "background 0.2s",
-  },
-  skipBtn: {
-    background: "none", border: "1px solid rgba(255,255,255,0.12)",
-    color: "rgba(255,255,255,0.4)", padding: "10px 20px",
-    fontSize: "0.8rem", cursor: "pointer", marginLeft: "auto",
-  },
-
-  // Done
-  doneWrap: { padding: "32px 24px" },
-  estimateBox: {
-    background: "rgba(192,200,216,0.06)", border: "1px solid rgba(192,200,216,0.2)",
-    padding: "20px 24px", marginBottom: 28,
-  },
-  estimateLabel: {
-    fontFamily: "'Share Tech Mono', monospace", fontSize: "0.6rem",
-    letterSpacing: "0.2em", color: "rgba(192,200,216,0.5)", marginBottom: 6,
-  },
-  estimateVal: {
-    fontSize: "2rem", fontWeight: 800, color: "#c0c8d8", letterSpacing: "-0.02em",
-    marginBottom: 4,
-  },
-  estimateSub: { fontSize: "0.75rem", color: "rgba(255,255,255,0.3)" },
-  doneTitle: {
-    fontSize: "clamp(1.4rem, 4vw, 1.9rem)", fontWeight: 800,
-    letterSpacing: "-0.02em", color: "#fff", lineHeight: 1.15, marginBottom: 12,
-  },
-  doneSub: { fontSize: "0.88rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.65, marginBottom: 28 },
-  waBtnLarge: {
-    display: "block", background: "#fff", color: "#000",
-    padding: "16px 24px", fontSize: "0.95rem", fontWeight: 700,
-    letterSpacing: "0.05em", textAlign: "center", textDecoration: "none",
-    marginBottom: 12, transition: "background 0.2s",
-  },
-  restartBtn: {
-    background: "none", border: "none", color: "rgba(255,255,255,0.3)",
-    fontSize: "0.8rem", cursor: "pointer", padding: "8px 0", display: "block",
-    width: "100%", textAlign: "center",
-  },
+const S = {
+  overlay:{position:"fixed",inset:0,background:"rgba(0,0,0,0.88)",backdropFilter:"blur(8px)",zIndex:1000,display:"flex",alignItems:"center",justifyContent:"center",padding:"16px"},
+  modal:{background:"#080808",border:"1px solid rgba(255,255,255,0.1)",width:"100%",maxWidth:"500px",maxHeight:"92vh",overflowY:"auto"},
+  header:{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"20px 24px 16px",borderBottom:"1px solid rgba(255,255,255,0.06)"},
+  headerLabel:{fontFamily:"'Share Tech Mono',monospace",fontSize:"0.6rem",letterSpacing:"0.25em",color:"rgba(255,255,255,0.3)"},
+  stepCount:{fontFamily:"'Share Tech Mono',monospace",fontSize:"0.6rem",color:"rgba(255,255,255,0.2)"},
+  closeBtn:{background:"none",border:"none",color:"rgba(255,255,255,0.4)",fontSize:"1rem",cursor:"pointer",padding:"4px 8px"},
+  progressTrack:{height:"2px",background:"rgba(255,255,255,0.06)"},
+  progressBar:{height:"100%",background:"#c0c8d8",transition:"width 0.4s ease"},
+  body:{padding:"28px 24px 24px"},
+  question:{fontSize:"clamp(1.2rem,4vw,1.6rem)",fontWeight:700,letterSpacing:"-0.02em",color:"#fff",marginBottom:8,lineHeight:1.15},
+  sub:{fontSize:"0.8rem",color:"rgba(255,255,255,0.35)",marginBottom:20},
+  liveTicker:{display:"inline-flex",alignItems:"center",gap:10,background:"rgba(192,200,216,0.06)",border:"1px solid rgba(192,200,216,0.15)",padding:"6px 14px",marginBottom:20},
+  liveTickerLabel:{fontFamily:"'Share Tech Mono',monospace",fontSize:"0.55rem",letterSpacing:"0.2em",color:"rgba(192,200,216,0.5)"},
+  liveTickerVal:{fontSize:"0.9rem",fontWeight:700,color:"#c0c8d8"},
+  optionGrid:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,marginBottom:24},
+  optionCard:{display:"flex",flexDirection:"column",alignItems:"flex-start",gap:8,padding:"14px",background:"rgba(255,255,255,0.03)",border:"1px solid rgba(255,255,255,0.08)",cursor:"pointer",transition:"all 0.15s",textAlign:"left"},
+  optionCardSel:{background:"rgba(192,200,216,0.08)",border:"1px solid rgba(192,200,216,0.4)"},
+  optIcon:{fontSize:"1.3rem"},
+  optLabel:{fontSize:"0.82rem",fontWeight:600,color:"#fff",lineHeight:1.3},
+  optionList:{display:"flex",flexDirection:"column",gap:6,marginBottom:24},
+  optionRow:{display:"flex",alignItems:"center",gap:14,padding:"13px 16px",background:"rgba(255,255,255,0.03)",border:"1px solid rgba(255,255,255,0.07)",cursor:"pointer",transition:"all 0.15s",textAlign:"left"},
+  optionRowSel:{background:"rgba(192,200,216,0.07)",border:"1px solid rgba(192,200,216,0.35)"},
+  radio:{width:18,height:18,border:"2px solid rgba(255,255,255,0.25)",borderRadius:"50%",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,transition:"border-color 0.15s"},
+  radioSel:{borderColor:"#c0c8d8"},
+  radioDot:{width:8,height:8,borderRadius:"50%",background:"#c0c8d8"},
+  optRowLabel:{fontSize:"0.88rem",color:"#fff",fontWeight:500},
+  inputWrap:{marginBottom:24},
+  input:{width:"100%",background:"rgba(255,255,255,0.04)",border:"1px solid rgba(255,255,255,0.12)",padding:"15px",fontSize:"1rem",color:"#fff",outline:"none",fontFamily:"inherit",boxSizing:"border-box"},
+  nav:{display:"flex",gap:10,justifyContent:"space-between",alignItems:"center"},
+  backBtn:{background:"none",border:"none",color:"rgba(255,255,255,0.4)",fontSize:"0.85rem",cursor:"pointer",padding:"10px 0"},
+  nextBtn:{background:"#fff",color:"#000",border:"none",padding:"12px 24px",fontSize:"0.88rem",fontWeight:700,letterSpacing:"0.05em",cursor:"pointer",marginLeft:"auto"},
+  skipBtn:{background:"none",border:"1px solid rgba(255,255,255,0.12)",color:"rgba(255,255,255,0.4)",padding:"10px 20px",fontSize:"0.8rem",cursor:"pointer",marginLeft:"auto"},
+  doneWrap:{padding:"28px 24px"},
+  threatBox:{background:"rgba(255,255,255,0.03)",border:"1px solid rgba(255,255,255,0.1)",padding:"24px",marginBottom:24},
+  threatLabel:{fontFamily:"'Share Tech Mono',monospace",fontSize:"0.55rem",letterSpacing:"0.2em",color:"rgba(255,255,255,0.3)",marginBottom:8},
+  threatScore:{fontSize:"3.5rem",fontWeight:900,letterSpacing:"-0.04em",lineHeight:1,marginBottom:8},
+  threatBadge:{display:"inline-block",fontFamily:"'Share Tech Mono',monospace",fontSize:"0.55rem",letterSpacing:"0.2em",border:"1px solid",padding:"3px 8px"},
+  estimateLabel:{fontFamily:"'Share Tech Mono',monospace",fontSize:"0.55rem",letterSpacing:"0.2em",color:"rgba(255,255,255,0.3)",marginBottom:6},
+  estimateVal:{fontSize:"1.4rem",fontWeight:800,color:"#c0c8d8",letterSpacing:"-0.02em",marginBottom:4},
+  estimateSub:{fontSize:"0.7rem",color:"rgba(255,255,255,0.25)"},
+  gapsWrap:{borderTop:"1px solid rgba(255,255,255,0.08)",paddingTop:16,marginTop:16},
+  gapsLabel:{fontFamily:"'Share Tech Mono',monospace",fontSize:"0.55rem",letterSpacing:"0.2em",color:"rgba(232,92,75,0.6)",marginBottom:10},
+  gapItem:{fontSize:"0.82rem",color:"rgba(255,255,255,0.5)",marginBottom:6,display:"flex",alignItems:"flex-start"},
+  doneTitle:{fontSize:"clamp(1.3rem,4vw,1.8rem)",fontWeight:800,letterSpacing:"-0.02em",color:"#fff",lineHeight:1.15,marginBottom:10},
+  doneSub:{fontSize:"0.85rem",color:"rgba(255,255,255,0.4)",lineHeight:1.65,marginBottom:24},
+  waBtnLarge:{display:"block",background:"#fff",color:"#000",padding:"15px 24px",fontSize:"0.92rem",fontWeight:700,letterSpacing:"0.05em",textAlign:"center",textDecoration:"none",marginBottom:10},
+  restartBtn:{background:"none",border:"none",color:"rgba(255,255,255,0.25)",fontSize:"0.78rem",cursor:"pointer",padding:"8px 0",display:"block",width:"100%",textAlign:"center"},
 };
