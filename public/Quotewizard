@@ -1,0 +1,470 @@
+import { useState } from "react";
+
+// ─── QUOTE WIZARD ────────────────────────────────────────────────────────────
+// DT3BZA Security — Intelligent lead capture
+// Beats Bark.com: dark tactical UI, smart logic, direct WhatsApp handoff,
+// instant AI-driven price estimate (world first for SA security cos)
+// ─────────────────────────────────────────────────────────────────────────────
+
+const STEPS = [
+  {
+    id: "service",
+    question: "What do you need?",
+    sub: "Select everything that applies.",
+    type: "multi",
+    options: [
+      { value: "cctv", label: "CCTV Installation", icon: "📷" },
+      { value: "cyber", label: "Cybersecurity", icon: "🔐" },
+      { value: "school", label: "School Security", icon: "🏫" },
+      { value: "dt3", label: "DT3 Intelligence App", icon: "🗺️" },
+      { value: "guard", label: "Guard Services", icon: "🛡️" },
+      { value: "audit", label: "Security Audit", icon: "📋" },
+    ],
+  },
+  {
+    id: "property",
+    question: "What type of property?",
+    sub: null,
+    type: "single",
+    showIf: (a) => a.service?.includes("cctv") || a.service?.includes("school") || a.service?.includes("guard"),
+    options: [
+      { value: "residential", label: "Residential" },
+      { value: "commercial", label: "Commercial / Office" },
+      { value: "industrial", label: "Industrial / Warehouse" },
+      { value: "school_prop", label: "School / Institution" },
+      { value: "construction", label: "Construction Site" },
+    ],
+  },
+  {
+    id: "cameras",
+    question: "How many cameras?",
+    sub: "Approximate is fine.",
+    type: "single",
+    showIf: (a) => a.service?.includes("cctv"),
+    options: [
+      { value: "1-4", label: "1–4 cameras" },
+      { value: "5-8", label: "5–8 cameras" },
+      { value: "9-16", label: "9–16 cameras" },
+      { value: "17+", label: "17+ cameras" },
+    ],
+  },
+  {
+    id: "project_type",
+    question: "Nature of the project?",
+    sub: null,
+    type: "single",
+    showIf: (a) => a.service?.includes("cctv"),
+    options: [
+      { value: "new", label: "New installation" },
+      { value: "upgrade", label: "Upgrade existing" },
+      { value: "replace", label: "Replace existing" },
+      { value: "repair", label: "Repair / maintenance" },
+    ],
+  },
+  {
+    id: "urgency",
+    question: "How urgent is this?",
+    sub: null,
+    type: "single",
+    options: [
+      { value: "asap", label: "As soon as possible" },
+      { value: "week", label: "Within a week" },
+      { value: "month", label: "Within a month" },
+      { value: "planning", label: "Just planning ahead" },
+    ],
+  },
+  {
+    id: "size",
+    question: "Size of the area to secure?",
+    sub: null,
+    type: "single",
+    showIf: (a) => !a.service?.includes("cyber") && !a.service?.includes("dt3"),
+    options: [
+      { value: "small", label: "Small (home, small office)" },
+      { value: "medium", label: "Medium (warehouse, school)" },
+      { value: "large", label: "Large (complex, campus)" },
+      { value: "multi", label: "Multiple sites" },
+    ],
+  },
+  {
+    id: "budget",
+    question: "Approximate budget?",
+    sub: "This helps us tailor the solution.",
+    type: "single",
+    options: [
+      { value: "under5", label: "Under R5,000" },
+      { value: "5-15k", label: "R5,000 – R15,000" },
+      { value: "15-50k", label: "R15,000 – R50,000" },
+      { value: "50k+", label: "R50,000+" },
+      { value: "unknown", label: "Not sure yet" },
+    ],
+  },
+  {
+    id: "name",
+    question: "Your name?",
+    sub: "We keep this confidential.",
+    type: "text",
+    placeholder: "Full name",
+  },
+  {
+    id: "contact",
+    question: "Best way to reach you?",
+    sub: "WhatsApp preferred — fastest response.",
+    type: "text",
+    placeholder: "Phone or email",
+  },
+];
+
+function buildWhatsAppMessage(answers) {
+  const serviceMap = {
+    cctv: "CCTV Installation",
+    cyber: "Cybersecurity",
+    school: "School Security",
+    dt3: "DT3 App",
+    guard: "Guard Services",
+    audit: "Security Audit",
+  };
+  const services = (answers.service || []).map((s) => serviceMap[s] || s).join(", ");
+  const lines = [
+    `*DT3BZA Security — Quote Request*`,
+    ``,
+    `*Name:* ${answers.name || "Not provided"}`,
+    `*Contact:* ${answers.contact || "Not provided"}`,
+    `*Services:* ${services}`,
+    answers.property ? `*Property type:* ${answers.property}` : null,
+    answers.cameras ? `*Cameras needed:* ${answers.cameras}` : null,
+    answers.project_type ? `*Project type:* ${answers.project_type}` : null,
+    answers.size ? `*Area size:* ${answers.size}` : null,
+    answers.urgency ? `*Urgency:* ${answers.urgency}` : null,
+    answers.budget ? `*Budget:* ${answers.budget}` : null,
+  ]
+    .filter(Boolean)
+    .join("\n");
+  return encodeURIComponent(lines);
+}
+
+function getEstimate(answers) {
+  const services = answers.service || [];
+  let low = 0, high = 0;
+
+  if (services.includes("cctv")) {
+    const camMap = { "1-4": [3500, 8000], "5-8": [8000, 18000], "9-16": [18000, 35000], "17+": [35000, 80000] };
+    const [cl, ch] = camMap[answers.cameras] || [3500, 8000];
+    low += cl; high += ch;
+  }
+  if (services.includes("cyber")) { low += 2500; high += 15000; }
+  if (services.includes("school")) { low += 5000; high += 25000; }
+  if (services.includes("audit")) { low += 1500; high += 8000; }
+  if (services.includes("guard")) { low += 8000; high += 25000; }
+
+  if (!low) return null;
+  return `R${low.toLocaleString()} – R${high.toLocaleString()}`;
+}
+
+export default function QuoteWizard({ onClose }) {
+  const [stepIndex, setStepIndex] = useState(0);
+  const [answers, setAnswers] = useState({});
+  const [done, setDone] = useState(false);
+
+  const visibleSteps = STEPS.filter((s) => !s.showIf || s.showIf(answers));
+  const step = visibleSteps[stepIndex];
+  const progress = ((stepIndex) / visibleSteps.length) * 100;
+  const estimate = getEstimate(answers);
+
+  function handleSingle(val) {
+    const updated = { ...answers, [step.id]: val };
+    setAnswers(updated);
+    advance(updated);
+  }
+
+  function handleMulti(val) {
+    const current = answers[step.id] || [];
+    const updated = current.includes(val)
+      ? current.filter((v) => v !== val)
+      : [...current, val];
+    setAnswers({ ...answers, [step.id]: updated });
+  }
+
+  function handleText(e) {
+    setAnswers({ ...answers, [step.id]: e.target.value });
+  }
+
+  function advance(updatedAnswers) {
+    const ans = updatedAnswers || answers;
+    const nextSteps = STEPS.filter((s) => !s.showIf || s.showIf(ans));
+    const nextIndex = stepIndex + 1;
+    if (nextIndex >= nextSteps.length) {
+      setDone(true);
+    } else {
+      setStepIndex(nextIndex);
+    }
+  }
+
+  function handleBack() {
+    if (stepIndex > 0) setStepIndex(stepIndex - 1);
+  }
+
+  const waMsg = buildWhatsAppMessage(answers);
+  const waUrl = `https://wa.me/27646993670?text=${waMsg}`;
+
+  return (
+    <div style={styles.overlay} onClick={(e) => e.target === e.currentTarget && onClose?.()}>
+      <div style={styles.modal}>
+        {/* Header */}
+        <div style={styles.header}>
+          <div style={styles.headerLeft}>
+            <span style={styles.headerLabel}>GET A QUOTE</span>
+            {!done && <span style={styles.stepCount}>{stepIndex + 1} / {visibleSteps.length}</span>}
+          </div>
+          <button style={styles.closeBtn} onClick={onClose}>✕</button>
+        </div>
+
+        {/* Progress bar */}
+        {!done && (
+          <div style={styles.progressTrack}>
+            <div style={{ ...styles.progressBar, width: `${progress}%` }} />
+          </div>
+        )}
+
+        {/* Done state */}
+        {done ? (
+          <div style={styles.doneWrap}>
+            {estimate && (
+              <div style={styles.estimateBox}>
+                <div style={styles.estimateLabel}>Estimated range</div>
+                <div style={styles.estimateVal}>{estimate}</div>
+                <div style={styles.estimateSub}>Final quote after free assessment</div>
+              </div>
+            )}
+            <h2 style={styles.doneTitle}>Ready to send<br />your quote request.</h2>
+            <p style={styles.doneSub}>
+              Tap below — your details are pre-filled. We respond within 2 hours on WhatsApp.
+            </p>
+            <a href={waUrl} target="_blank" rel="noreferrer" style={styles.waBtnLarge}>
+              <span>Send via WhatsApp →</span>
+            </a>
+            <button style={styles.restartBtn} onClick={() => { setAnswers({}); setStepIndex(0); setDone(false); }}>
+              Start over
+            </button>
+          </div>
+        ) : (
+          <div style={styles.body}>
+            <h2 style={styles.question}>{step.question}</h2>
+            {step.sub && <p style={styles.sub}>{step.sub}</p>}
+
+            {/* Multi select */}
+            {step.type === "multi" && (
+              <div style={styles.optionGrid}>
+                {step.options.map((opt) => {
+                  const sel = (answers[step.id] || []).includes(opt.value);
+                  return (
+                    <button
+                      key={opt.value}
+                      style={{ ...styles.optionCard, ...(sel ? styles.optionCardSel : {}) }}
+                      onClick={() => handleMulti(opt.value)}
+                    >
+                      <span style={styles.optIcon}>{opt.icon}</span>
+                      <span style={styles.optLabel}>{opt.label}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+
+            {/* Single select */}
+            {step.type === "single" && (
+              <div style={styles.optionList}>
+                {step.options.map((opt) => {
+                  const sel = answers[step.id] === opt.value;
+                  return (
+                    <button
+                      key={opt.value}
+                      style={{ ...styles.optionRow, ...(sel ? styles.optionRowSel : {}) }}
+                      onClick={() => handleSingle(opt.value)}
+                    >
+                      <span style={{ ...styles.radio, ...(sel ? styles.radioSel : {}) }}>
+                        {sel && <span style={styles.radioDot} />}
+                      </span>
+                      <span style={styles.optRowLabel}>{opt.label}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+
+            {/* Text input */}
+            {step.type === "text" && (
+              <div style={styles.inputWrap}>
+                <input
+                  style={styles.input}
+                  placeholder={step.placeholder}
+                  value={answers[step.id] || ""}
+                  onChange={handleText}
+                  onKeyDown={(e) => e.key === "Enter" && answers[step.id] && advance()}
+                  autoFocus
+                />
+              </div>
+            )}
+
+            {/* Nav */}
+            <div style={styles.nav}>
+              {stepIndex > 0 && (
+                <button style={styles.backBtn} onClick={handleBack}>← Back</button>
+              )}
+              {step.type === "multi" && (answers[step.id]?.length > 0) && (
+                <button style={styles.nextBtn} onClick={() => advance()}>Continue →</button>
+              )}
+              {step.type === "text" && answers[step.id] && (
+                <button style={styles.nextBtn} onClick={() => advance()}>
+                  {stepIndex === visibleSteps.length - 1 ? "See estimate →" : "Continue →"}
+                </button>
+              )}
+              {step.type === "text" && !answers[step.id] && (
+                <button style={styles.skipBtn} onClick={() => advance()}>Skip</button>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+const styles = {
+  overlay: {
+    position: "fixed", inset: 0, background: "rgba(0,0,0,0.85)",
+    backdropFilter: "blur(8px)", zIndex: 1000,
+    display: "flex", alignItems: "center", justifyContent: "center",
+    padding: "16px",
+  },
+  modal: {
+    background: "#0a0a0f", border: "1px solid rgba(255,255,255,0.1)",
+    width: "100%", maxWidth: "480px", maxHeight: "90vh",
+    overflowY: "auto", position: "relative",
+  },
+  header: {
+    display: "flex", justifyContent: "space-between", alignItems: "center",
+    padding: "20px 24px 16px", borderBottom: "1px solid rgba(255,255,255,0.06)",
+  },
+  headerLeft: { display: "flex", alignItems: "center", gap: 12 },
+  headerLabel: {
+    fontFamily: "'Share Tech Mono', monospace", fontSize: "0.6rem",
+    letterSpacing: "0.25em", color: "rgba(255,255,255,0.3)",
+  },
+  stepCount: {
+    fontFamily: "'Share Tech Mono', monospace", fontSize: "0.6rem",
+    color: "rgba(255,255,255,0.2)",
+  },
+  closeBtn: {
+    background: "none", border: "none", color: "rgba(255,255,255,0.4)",
+    fontSize: "1rem", cursor: "pointer", padding: "4px 8px",
+  },
+  progressTrack: {
+    height: "2px", background: "rgba(255,255,255,0.06)",
+  },
+  progressBar: {
+    height: "100%", background: "#c0c8d8", transition: "width 0.4s ease",
+  },
+  body: { padding: "32px 24px 24px" },
+  question: {
+    fontSize: "clamp(1.3rem, 4vw, 1.7rem)", fontWeight: 700,
+    letterSpacing: "-0.02em", color: "#fff", marginBottom: 8, lineHeight: 1.15,
+  },
+  sub: { fontSize: "0.82rem", color: "rgba(255,255,255,0.35)", marginBottom: 24 },
+
+  // Multi grid
+  optionGrid: {
+    display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 24,
+  },
+  optionCard: {
+    display: "flex", flexDirection: "column", alignItems: "flex-start",
+    gap: 8, padding: "16px", background: "rgba(255,255,255,0.03)",
+    border: "1px solid rgba(255,255,255,0.08)", cursor: "pointer",
+    transition: "all 0.15s", textAlign: "left",
+  },
+  optionCardSel: {
+    background: "rgba(192,200,216,0.08)", border: "1px solid rgba(192,200,216,0.4)",
+  },
+  optIcon: { fontSize: "1.4rem" },
+  optLabel: { fontSize: "0.85rem", fontWeight: 600, color: "#fff", lineHeight: 1.3 },
+
+  // Single list
+  optionList: { display: "flex", flexDirection: "column", gap: 6, marginBottom: 24 },
+  optionRow: {
+    display: "flex", alignItems: "center", gap: 14, padding: "14px 16px",
+    background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)",
+    cursor: "pointer", transition: "all 0.15s", textAlign: "left",
+  },
+  optionRowSel: {
+    background: "rgba(192,200,216,0.07)", border: "1px solid rgba(192,200,216,0.35)",
+  },
+  radio: {
+    width: 18, height: 18, border: "2px solid rgba(255,255,255,0.25)",
+    borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center",
+    flexShrink: 0, transition: "border-color 0.15s",
+  },
+  radioSel: { borderColor: "#c0c8d8" },
+  radioDot: {
+    width: 8, height: 8, borderRadius: "50%", background: "#c0c8d8",
+  },
+  optRowLabel: { fontSize: "0.9rem", color: "#fff", fontWeight: 500 },
+
+  // Text
+  inputWrap: { marginBottom: 24 },
+  input: {
+    width: "100%", background: "rgba(255,255,255,0.04)",
+    border: "1px solid rgba(255,255,255,0.12)", padding: "16px",
+    fontSize: "1rem", color: "#fff", outline: "none",
+    fontFamily: "inherit", boxSizing: "border-box",
+  },
+
+  // Nav
+  nav: { display: "flex", gap: 10, justifyContent: "space-between", alignItems: "center" },
+  backBtn: {
+    background: "none", border: "none", color: "rgba(255,255,255,0.4)",
+    fontSize: "0.85rem", cursor: "pointer", padding: "10px 0",
+  },
+  nextBtn: {
+    background: "#fff", color: "#000", border: "none",
+    padding: "12px 24px", fontSize: "0.88rem", fontWeight: 700,
+    letterSpacing: "0.05em", cursor: "pointer", marginLeft: "auto",
+    transition: "background 0.2s",
+  },
+  skipBtn: {
+    background: "none", border: "1px solid rgba(255,255,255,0.12)",
+    color: "rgba(255,255,255,0.4)", padding: "10px 20px",
+    fontSize: "0.8rem", cursor: "pointer", marginLeft: "auto",
+  },
+
+  // Done
+  doneWrap: { padding: "32px 24px" },
+  estimateBox: {
+    background: "rgba(192,200,216,0.06)", border: "1px solid rgba(192,200,216,0.2)",
+    padding: "20px 24px", marginBottom: 28,
+  },
+  estimateLabel: {
+    fontFamily: "'Share Tech Mono', monospace", fontSize: "0.6rem",
+    letterSpacing: "0.2em", color: "rgba(192,200,216,0.5)", marginBottom: 6,
+  },
+  estimateVal: {
+    fontSize: "2rem", fontWeight: 800, color: "#c0c8d8", letterSpacing: "-0.02em",
+    marginBottom: 4,
+  },
+  estimateSub: { fontSize: "0.75rem", color: "rgba(255,255,255,0.3)" },
+  doneTitle: {
+    fontSize: "clamp(1.4rem, 4vw, 1.9rem)", fontWeight: 800,
+    letterSpacing: "-0.02em", color: "#fff", lineHeight: 1.15, marginBottom: 12,
+  },
+  doneSub: { fontSize: "0.88rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.65, marginBottom: 28 },
+  waBtnLarge: {
+    display: "block", background: "#fff", color: "#000",
+    padding: "16px 24px", fontSize: "0.95rem", fontWeight: 700,
+    letterSpacing: "0.05em", textAlign: "center", textDecoration: "none",
+    marginBottom: 12, transition: "background 0.2s",
+  },
+  restartBtn: {
+    background: "none", border: "none", color: "rgba(255,255,255,0.3)",
+    fontSize: "0.8rem", cursor: "pointer", padding: "8px 0", display: "block",
+    width: "100%", textAlign: "center",
+  },
+};
