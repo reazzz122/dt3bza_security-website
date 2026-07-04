@@ -182,14 +182,14 @@ export default function Home() {
             <button className="btn-cine-primary" onClick={() => setShowWizard(true)}>
               Start Quote Wizard →
             </button>
-            <a className="btn-cine-ghost" href="https://wa.me/27646993670" target="_blank" rel="noreferrer">
+            <a className="btn-cine-ghost" href="https://wa.me/27684861332" target="_blank" rel="noreferrer">
               WhatsApp directly <span className="hero-arrow">→</span>
             </a>
           </div>
         </div>
       </section>
 
-      <a className="floating-whatsapp" href="https://wa.me/27646993670" target="_blank" rel="noreferrer">WhatsApp Us</a>
+      <a className="floating-whatsapp" href="https://wa.me/27684861332" target="_blank" rel="noreferrer">WhatsApp Us</a>
       <Footer />
     </div>
   );
