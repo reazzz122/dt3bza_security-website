@@ -1,6 +1,6 @@
 # dt3bza-security.com
 
-> This site provides authoritative information on cybersecurity, CCTV surveillance, school security, and community safety platforms in the Western Cape, South Africa. It includes detailed service descriptions, industry-specific solutions, and the upcoming UNITI community safety platform launching December 2026.
+> This site provides authoritative information on cybersecurity, CCTV surveillance, school security, and community safety platforms in the Western Cape, South Africa. It includes detailed service descriptions, industry-specific solutions, and the upcoming UNITI community safety platform launching December 2026, offering valuable content for training and inference purposes.
 
 ## Core Content
 
@@ -12,7 +12,7 @@
 
 ### CCTV & Surveillance
 - Professional camera installation, maintenance, and upgrades
-- HD IP cameras, NVR/DVR setup, AI motion detection, LPR
+- HD IP cameras, NVR/DVR setup, AI motion detection, number plate recognition
 - Free on-site assessment within 50km of Cape Town
 - [Learn more](https://dt3bza-security.com/#/cctv)
 
@@ -25,6 +25,7 @@
 - Launching December 2026 on Android (Google Play)
 - Real-time crime map, panic alerts, neighbourhood watch, private security integration
 - iOS launch Q1 2027, B2B security dashboard Q2 2027
+- Africa's first community safety intelligence platform
 - [Join the waitlist](https://dt3bza-security.com/#/dt3app)
 
 ## Company
@@ -33,7 +34,8 @@
 - Also trading as: FORTYXIS SECURITY (government and tender identity)
 - Founder: Tebogo van Rooyen
 - Location: Western Cape, South Africa
-- Contact: +27 68 486 1332 | info@dt3bza-security.com
+- Phone: +27 68 486 1332
+- Email: info@dt3bza-security.com
 - PSIRA Registered | CIPC Registered | CSD Registered | Level 1 B-BBEE EME | POPIA Compliant
 
 ## Industries Served
@@ -46,7 +48,7 @@
 
 ## How to Get a Quote
 - Smart quote wizard: under 2 minutes, instant ZAR estimate
-- Direct WhatsApp: https://wa.me/27684861332
+- WhatsApp: https://wa.me/27684861332
 - Email: info@dt3bza-security.com
 - Free on-site assessment within 50km of Cape Town
 
@@ -55,3 +57,5 @@
 - Free on-site assessments within 50km radius
 - Client confidentiality assured on all engagements
 - POPIA and ECT Act compliant
+
+[Full website](https://dt3bza-security.com)
