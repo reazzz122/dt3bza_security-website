@@ -213,10 +213,10 @@ export default function DT3App() {
               WhatsApp groups are chaos when something actually happens. You need a system, not a group chat.
             </p>
             <div style={{display:"flex",alignItems:"center",gap:14}}>
-              <div style={{width:44,height:44,borderRadius:"50%",background:"rgba(192,200,216,0.1)",border:"1px solid rgba(192,200,216,0.2)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"0.8rem",fontWeight:700,color:"rgba(192,200,216,0.6)"}}>DT</div>
+              <img src="/tebogo.jpg" alt="Tebogo Van Ran Rooyen" style={{width:52,height:52,borderRadius:"50%",objectFit:"cover",border:"1px solid rgba(192,200,216,0.25)"}}/>
               <div>
-                <div style={{fontSize:"0.9rem",fontWeight:700,color:"#fff"}}>Tebza — DT3BZA Security</div>
-                <div style={{fontSize:"0.78rem",color:"rgba(255,255,255,0.35)"}}>Founder · Western Cape</div>
+                <div style={{fontSize:"0.9rem",fontWeight:700,color:"#fff"}}>Tebogo Van Ran Rooyen</div>
+                <div style={{fontSize:"0.78rem",color:"rgba(255,255,255,0.35)"}}>Founder, DT3BZA Security · Western Cape</div>
               </div>
             </div>
           </div>
@@ -313,3 +313,5 @@ export default function DT3App() {
     </div>
   );
 }
+
+
