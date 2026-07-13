@@ -29,7 +29,7 @@ export function Footer() {
             <strong>DT3BZA Security (Pty) Ltd</strong>
             <p>Cybersecurity · CCTV Surveillance · School Security · Western Cape</p>
             <p style={{marginTop:6}}>Also trading as <strong style={{color:"rgba(255,255,255,0.55)"}}>FORTYXIS SECURITY</strong> (Government &amp; Tender Identity)</p>
-            <p style={{marginTop:8,fontSize:"0.82rem",color:"rgba(255,255,255,0.4)"}}>Founder: <strong style={{color:"rgba(255,255,255,0.6)"}}>Tebogo van Rooyen</strong></p>
+            <p style={{marginTop:8,fontSize:"0.82rem",color:"rgba(255,255,255,0.4)"}}>Founder: <strong style={{color:"rgba(255,255,255,0.6)"}}>Tebogo Van Ran Rooyen</strong></p>
             <p style={{marginTop:4,fontSize:"0.72rem",color:"rgba(255,255,255,0.2)"}}>CIPC Registered · PSIRA Registered · CSD Registered · Level 1 B-BBEE EME · POPIA Compliant</p>
             <p style={{marginTop:4,fontSize:"0.72rem",color:"rgba(232,184,75,0.5)"}}>UNITI App — Coming December 2026</p>
           </div>
@@ -51,7 +51,7 @@ export function Footer() {
           </div>
         </div>
         <div className="footer-bottom">
-          <p>© {year} DT3BZA Security (Pty) Ltd. All rights reserved. Founded by Tebogo van Rooyen. Scorpion logo and DT3BZA are proprietary trademarks.</p>
+          <p>© {year} DT3BZA Security (Pty) Ltd. All rights reserved. Founded by Tebogo Van Ran Rooyen. Scorpion logo and DT3BZA are proprietary trademarks.</p>
           <p>POPIA Compliant · ECT Act Compliant · Western Cape, South Africa</p>
         </div>
       </div>
