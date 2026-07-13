@@ -34,7 +34,7 @@ export default function Contact() {
             <div style={{background:"#000",padding:"48px"}}>
               <div style={{fontFamily:"'Share Tech Mono',monospace",fontSize:"0.62rem",letterSpacing:"0.25em",textTransform:"uppercase",color:"rgba(255,255,255,0.3)",marginBottom:12}}>On-Site Assessment</div>
               <div style={{fontSize:"1.4rem",fontWeight:700,color:"#fff",marginBottom:10}}>Free within 50km</div>
-              <div style={{fontSize:"0.88rem",color:"rgba(255,255,255,0.45)",lineHeight:1.65}}>Free on-site security assessment within 50km of Cape Town. Tebogo van Rooyen assesses your environment personally and recommends the right solution — no salespeople, no pressure.</div>
+              <div style={{fontSize:"0.88rem",color:"rgba(255,255,255,0.45)",lineHeight:1.65}}>Free on-site security assessment within 50km of Cape Town. Tebogo Van Ran Rooyen assesses your environment personally and recommends the right solution — no salespeople, no pressure.</div>
             </div>
           </div>
         </div>
