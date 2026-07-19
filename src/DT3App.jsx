@@ -93,10 +93,10 @@ export default function DT3App() {
             Join the waitlist now.
           </p>
           <div className="hero-actions-cine">
-            <a className="btn-cine-primary" href="https://wa.me/27684861332?text=Hello%20I%20want%20early%20access%20to%20UNITI" target="_blank" rel="noreferrer">
+            <a className="btn-cine-primary" href="https://wa.me/27769414251?text=Hello%20I%20want%20early%20access%20to%20UNITI" target="_blank" rel="noreferrer">
               Join the Waitlist →
             </a>
-            <a className="btn-cine-ghost" href="https://wa.me/27684861332?text=Hello%20I%20want%20to%20register%20my%20security%20company%20for%20UNITI" target="_blank" rel="noreferrer">
+            <a className="btn-cine-ghost" href="https://wa.me/27769414251?text=Hello%20I%20want%20to%20register%20my%20security%20company%20for%20UNITI" target="_blank" rel="noreferrer">
               Register Your Company <span className="hero-arrow">→</span>
             </a>
           </div>
@@ -268,8 +268,8 @@ export default function DT3App() {
             ))}
           </div>
           <div style={{marginTop:36,display:"flex",gap:12,flexWrap:"wrap"}}>
-            <a className="btn-cine-primary" href="https://wa.me/27684861332?text=Hello%20I%20want%20to%20register%20my%20security%20company%20for%20UNITI%20early%20access" target="_blank" rel="noreferrer">Register Your Company</a>
-            <a className="btn-cine-ghost" href="https://wa.me/27684861332?text=Hello%20I%20want%20early%20access%20to%20UNITI" target="_blank" rel="noreferrer">Join Waitlist <span className="hero-arrow">→</span></a>
+            <a className="btn-cine-primary" href="https://wa.me/27769414251?text=Hello%20I%20want%20to%20register%20my%20security%20company%20for%20UNITI%20early%20access" target="_blank" rel="noreferrer">Register Your Company</a>
+            <a className="btn-cine-ghost" href="https://wa.me/27769414251?text=Hello%20I%20want%20early%20access%20to%20UNITI" target="_blank" rel="noreferrer">Join Waitlist <span className="hero-arrow">→</span></a>
           </div>
         </div>
       </section>
@@ -287,7 +287,7 @@ export default function DT3App() {
             ))}
             <div style={{borderTop:"1px solid rgba(255,255,255,0.08)",paddingTop:32,marginTop:8}}>
               <p style={{fontSize:"0.88rem",color:"rgba(255,255,255,0.35)",marginBottom:16}}>Still have questions?</p>
-              <a className="btn-cine-ghost" href="https://wa.me/27684861332?text=Hello%20I%20have%20a%20question%20about%20UNITI" target="_blank" rel="noreferrer">Ask us on WhatsApp <span className="hero-arrow">→</span></a>
+              <a className="btn-cine-ghost" href="https://wa.me/27769414251?text=Hello%20I%20have%20a%20question%20about%20UNITI" target="_blank" rel="noreferrer">Ask us on WhatsApp <span className="hero-arrow">→</span></a>
             </div>
           </div>
         </div>
@@ -302,16 +302,14 @@ export default function DT3App() {
             Security companies get 30-day early access and a free 3-month trial.
           </p>
           <div style={{display:"flex",gap:16,flexWrap:"wrap"}}>
-            <a className="btn-cine-primary" href="https://wa.me/27684861332?text=Hello%20I%20want%20early%20access%20to%20UNITI" target="_blank" rel="noreferrer">Join Waitlist →</a>
-            <a className="btn-cine-ghost" href="https://wa.me/27684861332" target="_blank" rel="noreferrer">WhatsApp Us <span className="hero-arrow">→</span></a>
+            <a className="btn-cine-primary" href="https://wa.me/27769414251?text=Hello%20I%20want%20early%20access%20to%20UNITI" target="_blank" rel="noreferrer">Join Waitlist →</a>
+            <a className="btn-cine-ghost" href="https://wa.me/27769414251" target="_blank" rel="noreferrer">WhatsApp Us <span className="hero-arrow">→</span></a>
           </div>
         </div>
       </section>
 
-      <a className="floating-whatsapp" href="https://wa.me/27684861332" target="_blank" rel="noreferrer">WhatsApp Us</a>
+      <a className="floating-whatsapp" href="https://wa.me/27769414251" target="_blank" rel="noreferrer">WhatsApp Us</a>
       <Footer />
     </div>
   );
 }
-
-
