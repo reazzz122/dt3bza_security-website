@@ -12,7 +12,7 @@ export function Header() {
           <NavLink to="/cctv">CCTV</NavLink>
           <NavLink to="/schools">Schools</NavLink>
           <NavLink to="/dt3app">UNITI App</NavLink>
-          <a className="nav-cta" href="https://wa.me/27684861332?text=Hello%20I%20am%20interested%20in%20your%20security%20services" target="_blank" rel="noreferrer">Get a Quote</a>
+          <a className="nav-cta" href="https://wa.me/27769414251?text=Hello%20I%20am%20interested%20in%20your%20security%20services" target="_blank" rel="noreferrer">Get a Quote</a>
         </nav>
       </div>
     </header>
@@ -45,8 +45,8 @@ export function Footer() {
             <nav className="footer-links">
               <NavLink to="/privacy">Privacy Policy</NavLink>
               <NavLink to="/terms">Terms</NavLink>
-              <a href="mailto:info@dt3bza-security.com">info@dt3bza-security.com</a>
-              <a href="https://wa.me/27684861332" target="_blank" rel="noreferrer">+27 68 486 1332</a>
+              <a href="mailto:dt3bza@gmail.com">dt3bza@gmail.com</a>
+              <a href="https://wa.me/27769414251" target="_blank" rel="noreferrer">Sales & Enquiries</a>
             </nav>
           </div>
         </div>
